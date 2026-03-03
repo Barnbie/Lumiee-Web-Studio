@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumiee Web Studio — Web Development & Product Design</title>
+<meta name="description" content="We build high-performance corporate, business and custom websites that convert visitors into clients.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#050507;--dark:#0d0d12;--card:#111118;--border:rgba(255,255,255,0.07);
+  --pink:#DD4290;--purple:#5D3375;--blue:#1197C8;
+  --grad:linear-gradient(135deg,#DD4290,#5D3375,#1197C8);
+  --grad-text:linear-gradient(90deg,#DD4290 0%,#5D3375 50%,#1197C8 100%);
+  --white:#f0eff5;--muted:#8888a0;
+  --fd:'Playfair Display',serif;--fb:'DM Sans',sans-serif;--fm:'Space Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:var(--fb);font-size:16px;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--purple)}
+
+/* ── PAGE SYSTEM ── */
+.page{display:none;min-height:100vh}
+.page.active{display:block;animation:fadeUp .38s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════════════════════════════
+   NAVBAR
+══════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;height:64px;padding:0 4%;gap:1rem}
+
+/* Logo — swap src to your logo image */
+.nav-logo{cursor:pointer;flex-shrink:0;display:flex;align-items:center}
+.nav-logo img{height:36px;width:auto;object-fit:contain}
+/* Fallback text shown if image missing */
+.nav-logo-text{font-family:var(--fm);font-size:.93rem;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:none}
+
+/* Centered nav menu */
+.nav-menu{display:flex;align-items:center;justify-content:center;list-style:none;gap:0}
+.nav-item{position:relative}
+
+/* Invisible bridge so dropdown doesn't close when moving mouse down */
+.nav-item::after{content:'';position:absolute;top:100%;left:-10px;right:-10px;height:14px}
+
+.nav-link{display:flex;align-items:center;gap:.28rem;padding:.38rem .85rem;color:var(--muted);font-size:.82rem;font-weight:500;border-radius:7px;transition:all .2s;cursor:pointer;white-space:nowrap;background:none;border:none;font-family:var(--fb);letter-spacing:.02em}
+.nav-link:hover,.nav-link.active{color:var(--white);background:rgba(255,255,255,.05)}
+.nav-link.active{color:#1197C8;background:#1197c81d}
+.nav-arr{font-size:.56rem;transition:transform .25s;opacity:.45}
+.nav-item:hover>.nav-link .nav-arr{transform:rotate(180deg)}
+
+/* Dropdown — using hover on nav-item properly */
+.dropdown{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%) translateY(-4px);min-width:235px;background:rgba(10,10,15,.99);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:.45rem;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;backdrop-filter:blur(24px);z-index:500;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.nav-item:hover>.dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0)}
+.dd-link{display:flex;align-items:center;gap:.75rem;padding:.68rem 1rem;color:var(--muted);font-size:.82rem;border-radius:9px;transition:all .16s;cursor:pointer;width:100%;text-decoration:none}
+.dd-link:hover{background:rgba(17,151,200,.1);color:var(--white)}
+.dd-icon{font-size:.95rem;flex-shrink:0}
+.dd-title{font-weight:600;color:var(--white);font-size:.81rem}
+.dd-sub{font-size:.71rem;color:var(--muted);margin-top:.07rem}
+
+/* Nav right */
+.nav-right{display:flex;align-items:center;gap:1.2rem;flex-shrink:0}
+.nav-account{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--muted);font-size:.85rem}
+.nav-account:hover{border-color:var(--blue);background:rgba(17,151,200,.1);color:var(--white)}
+.nav-cta{padding:.5rem 1.2rem;background:var(--grad);border:none;border-radius:8px;color:#fff;font-family:var(--fb);font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
+.nav-cta:hover{opacity:.85;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{display:block;width:21px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* Mobile drawer */
+.mob-drawer{position:fixed;inset:0;background:rgba(5,5,7,.98);backdrop-filter:blur(20px);z-index:999;display:flex;flex-direction:column;padding:72px 6% 3rem;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .3s}
+.mob-drawer.open{opacity:1;pointer-events:all}
+.mob-link{display:flex;align-items:center;justify-content:space-between;padding:.9rem 0;border-bottom:1px solid var(--border);font-size:1.05rem;font-weight:500;color:var(--white);cursor:pointer}
+.mob-arr{font-size:.7rem;color:var(--muted);transition:transform .25s}
+.mob-sub{display:none;padding:.4rem 0 .4rem 1rem}
+.mob-sub.open{display:block}
+.mob-sub-link{display:block;padding:.55rem 0;color:var(--muted);font-size:.88rem;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.03)}
+.mob-sub-link:hover{color:var(--white)}
+.mob-account-row{display:flex;gap:.8rem;margin-top:1.8rem}
+.mb-btn{flex:1;padding:.8rem;border-radius:10px;text-align:center;font-weight:600;font-size:.88rem;cursor:pointer;font-family:var(--fb);border:none}
+.mb-login{background:transparent;border:1px solid var(--border);color:var(--white)}
+.mb-signup{background:var(--grad);color:#fff}
+
+/* Account popup */
+.acct-popup{position:fixed;top:72px;right:4%;width:310px;background:rgba(10,10,15,.99);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:1.4rem;z-index:2000;backdrop-filter:blur(20px);opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .22s;box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.acct-popup.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.acct-popup h3{font-family:var(--fd);font-size:1.15rem;margin-bottom:.25rem}
+.acct-popup p{color:var(--muted);font-size:.8rem;margin-bottom:1.1rem}
+.am-tabs{display:flex;gap:.25rem;background:rgba(255,255,255,.04);border-radius:9px;padding:3px;margin-bottom:1.1rem}
+.am-tab{flex:1;padding:.38rem;border:none;border-radius:7px;background:transparent;color:var(--muted);font-family:var(--fb);font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s}
+.am-tab.active{background:var(--purple);color:#fff}
+.am-form{display:flex;flex-direction:column;gap:.6rem}
+.am-input{padding:.7rem .9rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;color:var(--white);font-family:var(--fb);font-size:.83rem;outline:none;transition:border-color .2s;width:100%}
+.am-input:focus{border-color:var(--purple)}
+.am-input::placeholder{color:var(--muted)}
+.am-btn{padding:.75rem;background:var(--grad);border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.85rem;font-weight:600;cursor:pointer}
+.am-or{text-align:center;color:var(--muted);font-size:.75rem}
+.am-wa{padding:.7rem;background:linear-gradient(135deg,#25d366,#128c7e);border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.83rem;font-weight:600;cursor:pointer}
+
+/* ══ FLOATING BUTTONS ══ */
+/* WhatsApp — bottom left */
+.float-wa{position:fixed;bottom:1.8rem;left:1.8rem;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s;text-decoration:none;font-size:1.4rem}
+.float-wa:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 8px 28px rgba(37,211,102,.55)}
+.float-wa::after{content:'Chat on WhatsApp';position:absolute;left:calc(100% + 10px);background:rgba(10,10,15,.95);color:#fff;font-family:var(--fb);font-size:.75rem;padding:.3rem .7rem;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid var(--border)}
+.float-wa:hover::after{opacity:1}
+
+/* AI Chat — bottom right */
+.float-ai{position:fixed;bottom:1.8rem;right:1.8rem;width:52px;height:52px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(123,47,255,.45);transition:transform .25s,box-shadow .25s;font-size:1.3rem;border:none}
+.float-ai:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 8px 28px rgba(123,47,255,.6)}
+.float-ai::after{content:'Chat with AI';position:absolute;right:calc(100% + 10px);background:rgba(10,10,15,.95);color:#fff;font-family:var(--fb);font-size:.75rem;padding:.3rem .7rem;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid var(--border)}
+.float-ai:hover::after{opacity:1}
+
+/* AI chat popup (placeholder for future integration) */
+.ai-chat-popup{position:fixed;bottom:5.5rem;right:1.8rem;width:320px;background:rgba(10,10,15,.99);border:1px solid rgba(123,47,255,.3);border-radius:18px;padding:0;z-index:901;box-shadow:0 16px 50px rgba(0,0,0,.6);opacity:0;pointer-events:none;transform:translateY(10px);transition:all .25s;overflow:hidden}
+.ai-chat-popup.open{opacity:1;pointer-events:all;transform:translateY(0)}
+.ai-chat-head{padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(123,47,255,.2),rgba(76,201,240,.1));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem}
+.ai-chat-head .ai-av{width:32px;height:32px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.ai-chat-head h4{font-size:.88rem;font-weight:600}
+.ai-chat-head p{font-size:.72rem;color:var(--muted)}
+.ai-chat-close{margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem}
+.ai-chat-body{padding:1.2rem;min-height:160px;display:flex;flex-direction:column;gap:.7rem}
+.ai-bubble{background:rgba(123,47,255,.1);border:1px solid rgba(123,47,255,.15);border-radius:12px 12px 12px 4px;padding:.75rem 1rem;font-size:.82rem;color:var(--white);max-width:85%;line-height:1.6}
+.ai-chat-input{display:flex;gap:.5rem;padding:1rem 1.2rem;border-top:1px solid var(--border)}
+.ai-chat-input input{flex:1;padding:.6rem .9rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;color:var(--white);font-family:var(--fb);font-size:.82rem;outline:none}
+.ai-chat-input input:focus{border-color:var(--purple)}
+.ai-send{padding:.6rem .9rem;background:var(--grad);border:none;border-radius:9px;color:#fff;font-size:.8rem;cursor:pointer}
+
+/* ══ UTILS ══ */
+.container{max-width:1160px;margin:0 auto;padding:0 5%}
+.section{padding:7rem 0;position:relative}
+.section-label{font-family:var(--fm);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:.8rem}
+.section-title{font-family:var(--fd);font-size:clamp(1.9rem,3.8vw,3rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem}
+.grad-text{background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+.btn-primary{display:inline-flex;align-items:center;gap:.45rem;padding:.82rem 1.7rem;background:var(--grad);border:none;border-radius:10px;color:#fff;font-family:var(--fb);font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .25s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(17,151,200,.35)}
+.btn-outline{display:inline-flex;align-items:center;gap:.45rem;padding:.82rem 1.7rem;background:transparent;border:1px solid rgba(255,255,255,.13);border-radius:10px;color:var(--white);font-family:var(--fb);font-size:.9rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all .25s}
+.btn-outline:hover{border-color:var(--purple);background:rgba(123,47,255,.07)}
+
+/* Image placeholder helper */
+.img-placeholder{background:var(--card);border:2px dashed rgba(123,47,255,.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--muted);font-size:.78rem;font-family:var(--fm);text-align:center;padding:1rem}
+.img-placeholder span{font-size:2rem;opacity:.3}
+
+/* ══ HOME ══ */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:9rem 5% 5rem}
+.hero-content{position:relative;z-index:1;max-width:740px}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.33rem .9rem;background:#1197c81b;border:1px solid #1197c879;border-radius:100px;font-family:var(--fm);font-size:.7rem;color:#1197C8;margin-bottom:1.7rem;letter-spacing:.05em}
+.hero-badge::before{content:'●';color:var(--pink);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.hero-title{font-family:var(--fd);font-size:clamp(2.6rem,6.5vw,5.5rem);font-weight:900;line-height:1.05;margin-bottom:1.2rem;letter-spacing:-.02em}
+.hero-sub{font-size:1.05rem;color:var(--muted);max-width:480px;margin-bottom:2rem;line-height:1.75}
+.hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:3rem}
+.hero-stats{display:flex;gap:3rem;border-top:1px solid var(--border);padding-top:2rem;flex-wrap:wrap}
+.stat-num{font-family:var(--fd);font-size:1.85rem;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:.74rem;color:var(--muted);margin-top:.12rem;text-transform:uppercase;letter-spacing:.05em}
+.hero-ring{position:absolute;right:-8%;top:50%;transform:translateY(-50%);width:42%;aspect-ratio:1;z-index:0;opacity:.07;border-radius:50%;background:conic-gradient(from 0deg,#DD4290,#5D3375,#4cc9f0,#DD4290);animation:ringrot 18s linear infinite}
+@keyframes ringrot{to{transform:translateY(-50%) rotate(360deg)}}
+
+/* Services strip */
+.strip{background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:3.5rem 0}
+.strip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.strip-item{background:var(--dark);padding:1.7rem 2rem;display:flex;align-items:flex-start;gap:.9rem;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.strip-item::after{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .45s;pointer-events:none}
+.strip-item:hover{background:rgba(17,151,200,.06);box-shadow:inset 0 0 0 1px rgba(17,151,200,.28),0 0 24px rgba(17,151,200,.12)}
+.strip-item:hover::after{opacity:.18;animation:gradWave 1.8s ease infinite}
+.strip-item>*{position:relative;z-index:1}
+.strip-icon{font-size:1.3rem;flex-shrink:0;margin-top:2px}
+.strip-item h3{font-size:.88rem;font-weight:600;margin-bottom:.22rem}
+.strip-item p{font-size:.76rem;color:var(--muted)}
+
+/* About/company section */
+.home-about{padding:7rem 0;position:relative;overflow:hidden}
+.ha-grid{display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:center}
+
+/* ── COMPANY IMAGE PLACEHOLDER ──
+   Replace the div.company-img with:
+   <img src="images/team-photo.jpg" alt="Our Team" class="company-img-real">
+   and add CSS: .company-img-real { width:100%; border-radius:18px; }
+*/
+.company-img{aspect-ratio:4/5;border-radius:18px;overflow:hidden;position:relative}
+.abt-badge{position:absolute;bottom:1.2rem;right:1.2rem;background:rgba(5,5,7,.92);border:1px solid var(--border);border-radius:11px;padding:.8rem 1.2rem;backdrop-filter:blur(10px)}
+
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.8rem}
+.skill-tag{padding:.28rem .75rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:100px;font-size:.73rem;color:var(--muted);font-family:var(--fm)}
+
+/* Tech stack (home) */
+.stack-section{background:var(--dark);padding:6rem 0;border-top:1px solid var(--border)}
+.stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem}
+.stack-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1rem;text-align:center;transition:all .3s;position:relative;overflow:hidden;cursor:default}
+.stack-card::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(221,66,144,.22),rgba(93,51,117,.22),rgba(17,151,200,.22),transparent);background-size:200% 100%;opacity:0;transition:opacity .35s;z-index:0;animation:none}
+.stack-card:hover{transform:translateY(-5px);box-shadow:0 10px 32px rgba(17,151,200,.3),0 0 0 1px rgba(17,151,200,.35);border-color:rgba(17,151,200,.5)}
+.stack-card:hover::before{opacity:1;animation:gradWave 1.6s ease infinite}
+.stack-card>*{position:relative;z-index:1}
+.s-icon{font-size:2rem;margin-bottom:.5rem;display:block}
+.s-icon img{width:42px;height:42px;object-fit:contain;display:block;margin:0 auto}
+.s-name{font-size:.78rem;color:var(--muted);font-family:var(--fm);transition:color .3s}
+.stack-card:hover .s-name{color:var(--white)}
+
+/* Process */
+.process{background:var(--dark);padding:7rem 0}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:4.5rem}
+.ps{background:var(--dark);padding:2rem 1.7rem;position:relative;overflow:hidden;transition:all .3s}
+.ps::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(221,66,144,.2),rgba(93,51,117,.2),rgba(17,151,200,.2),transparent);background-size:200% 100%;opacity:0;transition:opacity .35s;z-index:0;pointer-events:none}
+.ps:hover{background:rgba(17,151,200,.05);box-shadow:inset 0 0 0 1px rgba(17,151,200,.28),0 0 20px rgba(17,151,200,.15)}
+.ps:hover::after{opacity:1;animation:gradWave 1.8s ease infinite}
+.ps-num,.ps-icon,.ps h3,.ps p{position:relative;z-index:1}
+.ps-num{font-family:var(--fm);font-size:2.2rem;font-weight:700;opacity:.05;position:absolute;top:.7rem;right:1.1rem;line-height:1}
+.ps-icon{font-size:1.5rem;margin-bottom:.9rem}
+.ps h3{font-size:.89rem;font-weight:600;margin-bottom:.38rem}
+.ps p{font-size:.79rem;color:var(--muted)}
+
+/* CTA Banner */
+.cta-banner{padding:4.5rem 3.5rem;background:linear-gradient(135deg,rgba(247,37,133,.07),rgba(123,47,255,.11),rgba(76,201,240,.05));border:1px solid rgba(123,47,255,.2);border-radius:20px;text-align:center;position:relative;overflow:hidden}
+.cta-banner h2{font-family:var(--fd);font-size:clamp(1.5rem,2.7vw,2.4rem);font-weight:700;margin-bottom:.7rem}
+.cta-banner p{color:var(--muted);max-width:420px;margin:0 auto 1.6rem;font-size:.9rem}
+.cta-actions{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem;margin-top:3.5rem}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.faq-q{padding:1.1rem 1.3rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-weight:500;font-size:.86rem;transition:background .2s}
+.faq-q:hover{background:rgba(255,255,255,.02)}
+.faq-arr{transition:transform .3s;color:var(--muted);font-size:.68rem;flex-shrink:0;margin-left:.7rem}
+.faq-item.open .faq-arr{transform:rotate(180deg);color:var(--blue)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .28s;font-size:.82rem;color:var(--muted);line-height:1.7;padding:0 1.3rem}
+.faq-item.open .faq-a{max-height:200px;padding:0 1.3rem 1.1rem}
+
+/* ══ FULL FOOTER ══ */
+.site-footer{background:var(--dark);border-top:1px solid var(--border);padding:5.5rem 0 2.5rem;position:relative;z-index:1}
+.footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3.5rem}
+
+/* Footer logo — same image as nav */
+.footer-logo-wrap{display:flex;align-items:center;margin-bottom:.9rem;cursor:pointer}
+.footer-logo-wrap img{height:32px;width:auto;object-fit:contain}
+.footer-logo-text{font-family:var(--fm);font-size:.93rem;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+
+.footer-brand p{font-size:.8rem;color:var(--muted);max-width:220px;line-height:1.7;margin-bottom:1.2rem}
+.footer-socials{display:flex;gap:.4rem}
+.f-social{width:32px;height:32px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.8rem;cursor:pointer;text-decoration:none;transition:all .2s}
+.f-social:hover{border-color:var(--purple);color:var(--white);background:rgba(123,47,255,.1)}
+.footer-col h4{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.9rem;font-family:var(--fm)}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.footer-col ul li a{color:#7a7a90;font-size:.82rem;text-decoration:none;transition:color .2s;cursor:pointer}
+.footer-col ul li a:hover{color:var(--white)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:.76rem;color:var(--muted)}
+
+/* ══ INNER PAGE HERO ══ */
+.page-hero{padding:9rem 5% 5rem;position:relative;overflow:hidden}
+.ph-label{font-family:var(--fm);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:.7rem}
+.ph-title{font-family:var(--fd);font-size:clamp(2.2rem,5vw,4rem);font-weight:900;line-height:1.07;margin-bottom:.9rem}
+.ph-desc{color:var(--muted);font-size:1rem;max-width:500px;line-height:1.75}
+.ph-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:1.7rem}
+
+/* ══ PRICING ══ */
+.cur-wrap{display:flex;justify-content:center;margin:2.2rem 0 .8rem}
+.cur-toggle{display:inline-flex;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:3px}
+.cur-btn{padding:.38rem 1rem;border:none;border-radius:7px;background:transparent;color:var(--muted);font-family:var(--fm);font-size:.76rem;cursor:pointer;transition:all .2s}
+.cur-btn.active{background:var(--purple);color:#fff}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin:3.5rem 0}
+.pc{background:var(--card);border:1px solid var(--border);border-radius:17px;overflow:hidden;position:relative;transition:all .3s}
+.pc::after{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .45s;z-index:0;pointer-events:none}
+.pc:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.3),0 0 32px rgba(17,151,200,.22);border-color:rgba(17,151,200,.4)}
+.pc:hover::after{opacity:.14;animation:gradWave 1.8s ease infinite}
+.pc>*{position:relative;z-index:1}
+.pc.featured{border-color:rgba(123,47,255,.42);background:linear-gradient(180deg,rgba(123,47,255,.065) 0%,var(--card) 100%)}
+.pc.featured::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad)}
+.feat-badge{position:absolute;top:1rem;right:1rem;padding:.16rem .58rem;background:rgba(123,47,255,.16);border:1px solid rgba(123,47,255,.32);border-radius:100px;font-size:.66rem;font-family:var(--fm);color:#c084fc;letter-spacing:.05em}
+.pc-head{padding:2rem 1.7rem 1.2rem}
+.pc-type{font-family:var(--fm);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pink);margin-bottom:.55rem}
+.pc-name{font-family:var(--fd);font-size:1.45rem;font-weight:700;margin-bottom:.4rem}
+.pc-desc{font-size:.8rem;color:var(--muted);line-height:1.6}
+.pc-price{padding:1.2rem 1.7rem;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.price-val{font-family:var(--fd);font-size:2.1rem;font-weight:700}
+.price-note{font-size:.73rem;color:var(--muted);margin-top:.3rem}
+.pc-feats{padding:1.5rem 1.7rem}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem}
+.feat-list li{display:flex;align-items:flex-start;gap:.55rem;font-size:.81rem;color:#c0bfd0}
+.feat-list li::before{content:'✦';color:var(--pink);font-size:.58rem;margin-top:4px;flex-shrink:0}
+.pc-btn{display:block;width:100%;padding:.82rem;border-radius:9px;text-align:center;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .22s;text-decoration:none;border:none;font-family:var(--fb)}
+.pc-btn-grad{background:var(--grad);color:#fff}
+.pc-btn-grad:hover{box-shadow:0 5px 20px rgba(123,47,255,.36);transform:translateY(-1px)}
+.pc-btn-out{background:transparent;border:1px solid rgba(255,255,255,.13);color:var(--white)}
+.pc-btn-out:hover{border-color:var(--purple);background:rgba(123,47,255,.07)}
+
+/* ══ PORTFOLIO ══ */
+.port-filter{display:flex;gap:.38rem;justify-content:center;flex-wrap:wrap;margin-top:1.8rem}
+.filt-btn{padding:.35rem .9rem;background:transparent;border:1px solid var(--border);border-radius:100px;color:var(--muted);font-size:.76rem;cursor:pointer;transition:all .2s;font-family:var(--fb)}
+.filt-btn:hover,.filt-btn.active{border-color:var(--blue);color:var(--white);background:rgba(17,151,200,.1)}
+.port-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:2.5rem;margin:4rem 0 5rem}
+.port-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s;position:relative}
+.port-card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .45s;z-index:1;pointer-events:none;border-radius:14px}
+.port-card:hover{transform:translateY(-6px);border-color:rgba(17,151,200,.5);box-shadow:0 20px 50px rgba(0,0,0,.4),0 0 36px rgba(17,151,200,.25)}
+.port-card:hover::before{opacity:.12;animation:gradWave 1.8s ease infinite}
+.port-img,.port-info{position:relative;z-index:2}
+
+/* Portfolio card image placeholder
+   To use a real image replace the div.port-img with:
+   <img src="images/project-name.jpg" alt="Project Name" class="port-img-real">
+   CSS: .port-img-real{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+*/
+.port-img{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:2.7rem;color:rgba(255,255,255,.06);position:relative;overflow:hidden;transition:transform .5s}
+.port-card:hover .port-img{transform:scale(1.04)}
+.port-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(221,66,144,.7),rgba(17,151,200,.7));display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;color:#fff;font-weight:600;font-size:.88rem}
+.port-card:hover .port-ov{opacity:1}
+.port-info{padding:1.4rem 1.4rem 1.6rem}
+.port-tag{display:inline-block;padding:.15rem .6rem;background:rgba(247,37,133,.09);border:1px solid rgba(247,37,133,.16);border-radius:100px;font-size:.66rem;color:var(--pink);font-family:var(--fm);margin-bottom:.6rem;letter-spacing:.05em}
+.port-info h3{font-size:.96rem;font-weight:600;margin-bottom:.3rem}
+.port-info p{font-size:.79rem;color:var(--muted);line-height:1.6}
+
+/* Case study modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(10px);z-index:3000;display:flex;align-items:center;justify-content:center;padding:1.5rem;opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:18px;max-width:660px;width:100%;max-height:88vh;overflow-y:auto;position:relative;transform:translateY(16px);transition:transform .3s}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-img{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:3.8rem;color:rgba(255,255,255,.06)}
+.modal-body{padding:1.7rem}
+.modal-tag{font-family:var(--fm);font-size:.68rem;color:var(--pink);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.55rem}
+.modal-title{font-family:var(--fd);font-size:1.65rem;font-weight:700;margin-bottom:.85rem}
+.modal-meta{display:flex;gap:1.2rem;flex-wrap:wrap;margin-bottom:1.1rem;padding:.85rem;background:rgba(255,255,255,.024);border-radius:10px}
+.meta-it .ml{font-size:.66rem;color:var(--muted);font-family:var(--fm);text-transform:uppercase;letter-spacing:.07em}
+.meta-it .mv{font-size:.82rem;font-weight:500;margin-top:.18rem}
+.modal-desc{color:var(--muted);font-size:.85rem;line-height:1.8;margin-bottom:1.3rem}
+.modal-close{position:absolute;top:.9rem;right:.9rem;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.07);border:none;color:var(--white);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.modal-close:hover{background:rgba(255,255,255,.14)}
+
+/* ══ BLOG ══ */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:2.5rem;margin-top:4rem;margin-bottom:5rem}
+.blog-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s;position:relative}
+.blog-card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .45s;z-index:1;pointer-events:none;border-radius:14px}
+.blog-card:hover{transform:translateY(-5px);border-color:rgba(17,151,200,.45);box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 30px rgba(17,151,200,.2)}
+.blog-card:hover::before{opacity:.12;animation:gradWave 1.8s ease infinite}
+.blog-img,.blog-body{position:relative;z-index:2}
+
+/* Blog card image placeholder
+   Replace div.blog-img with:
+   <img src="images/blog-post-slug.jpg" alt="Post title" class="blog-img-real">
+   CSS: .blog-img-real{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+*/
+.blog-img{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:rgba(255,255,255,.06)}
+.blog-body{padding:1.4rem 1.4rem 1.6rem}
+.blog-cat{display:inline-block;padding:.15rem .6rem;background:rgba(76,201,240,.08);border:1px solid rgba(76,201,240,.17);border-radius:100px;font-size:.66rem;color:var(--blue);font-family:var(--fm);margin-bottom:.6rem;letter-spacing:.05em}
+.blog-body h3{font-size:.95rem;font-weight:600;line-height:1.4;margin-bottom:.5rem}
+.blog-body p{font-size:.8rem;color:var(--muted);line-height:1.65;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.blog-meta{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:.73rem;color:var(--muted)}
+.blog-rm{color:var(--pink);font-size:.73rem;cursor:pointer}
+
+/* ══ CONSULTATION ══ */
+.consult-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:start;padding:2rem 0 7rem}
+.consult-info h2{font-family:var(--fd);font-size:clamp(1.7rem,3.3vw,2.7rem);font-weight:700;margin-bottom:.9rem}
+.consult-info p{color:var(--muted);line-height:1.75;font-size:.9rem;margin-bottom:1.3rem}
+.perks{display:flex;flex-direction:column;gap:1rem;margin-top:1.8rem}
+.perk{display:flex;align-items:flex-start;gap:.85rem;padding:.95rem 1.1rem;background:var(--card);border:1px solid var(--border);border-radius:12px;transition:all .3s;position:relative;overflow:hidden}
+.perk-icon{font-size:1.2rem;flex-shrink:0}
+.perk-title{font-size:.86rem;font-weight:600;margin-bottom:.18rem}
+.perk-desc{font-size:.77rem;color:var(--muted)}
+
+/* ══ FORMS ══ */
+.form-wrap{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2rem}
+.form-wrap h3{font-family:var(--fd);font-size:1.35rem;font-weight:700;margin-bottom:1.5rem}
+.fg{margin-bottom:.95rem}
+.fg label{display:block;font-size:.75rem;font-weight:500;color:var(--muted);margin-bottom:.38rem;text-transform:uppercase;letter-spacing:.06em;font-family:var(--fm)}
+.fg input,.fg select,.fg textarea{width:100%;padding:.75rem .9rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;color:var(--white);font-family:var(--fb);font-size:.85rem;transition:border-color .2s;outline:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--purple);background:rgba(123,47,255,.03)}
+.fg select option{background:var(--card)}
+.fg textarea{resize:vertical;min-height:95px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.f-submit{width:100%;padding:.88rem;background:var(--grad);border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .22s;margin-top:.35rem}
+.f-submit:hover{transform:translateY(-2px);box-shadow:0 7px 24px rgba(123,47,255,.38)}
+.f-success{display:none;text-align:center;padding:2.5rem 1rem;color:var(--blue);font-family:var(--fm);font-size:.85rem;line-height:2}
+
+/* ══ ABOUT ══ */
+.about-company-grid{display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:center}
+
+/* Company/team image placeholder
+   Replace div.team-img with:
+   <img src="images/team.jpg" alt="Our Team" class="team-img-real">
+   CSS: .team-img-real{width:100%;border-radius:18px;display:block}
+*/
+.team-img{aspect-ratio:4/5;border-radius:18px;overflow:hidden;position:relative}
+.vals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin-top:5rem}
+.val-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.7rem;transition:all .3s;position:relative;overflow:hidden}
+.val-card::after{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .45s;pointer-events:none}
+.val-card:hover{border-color:rgba(17,151,200,.45);transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.3),0 0 24px rgba(17,151,200,.18)}
+.val-card:hover::after{opacity:.15;animation:gradWave 1.8s ease infinite}
+.val-card>*{position:relative;z-index:1}
+.val-icon{font-size:1.75rem;margin-bottom:.85rem}
+.val-card h3{font-size:.87rem;font-weight:600;margin-bottom:.38rem}
+.val-card p{font-size:.78rem;color:var(--muted)}
+
+/* ══ CONTACT ══ */
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:5rem;align-items:start;padding:3rem 0 7rem}
+.contact-methods{display:flex;flex-direction:column;gap:1.1rem;margin-top:2.2rem}
+.cm{display:flex;align-items:center;gap:.85rem;padding:1rem 1.3rem;background:var(--card);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--white);transition:all .2s}
+.cm:hover{border-color:rgba(17,151,200,.33);background:rgba(17,151,200,.05);box-shadow:0 4px 16px rgba(17,151,200,.1)}
+.cm-icon{font-size:1.15rem}
+.cm-label{font-size:.66rem;color:var(--muted);font-family:var(--fm);text-transform:uppercase;letter-spacing:.08em}
+.cm-val{font-size:.85rem;font-weight:500}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:960px){
+  .nav-menu,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .nav-inner{grid-template-columns:auto auto}
+  .pricing-grid,.process-grid,.strip-grid,.about-company-grid,.ha-grid,.contact-grid,.consult-grid{grid-template-columns:1fr}
+  .faq-grid,.vals-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .pricing-grid{max-width:420px;margin-left:auto;margin-right:auto}
+  .float-wa::after,.float-ai::after{display:none}
+}
+@media(max-width:600px){
+  .hero-stats{gap:1.4rem}
+  .footer-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr}
+  .cta-banner{padding:2rem 1.3rem}
+  .vals-grid{grid-template-columns:1fr}
+  .page-hero{padding:7rem 5% 2.5rem}
+  .port-grid{gap:1.3rem}
+  .blog-grid{gap:1.3rem}
+}
+
+/* ══ MARQUEE TICKER ══ */
+.marquee-wrap{overflow:hidden;padding:.9rem 0;background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.marquee-track{display:flex;width:max-content;animation:marquee 28s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+.marquee-item{display:flex;align-items:center;gap:.6rem;padding:0 2.2rem;white-space:nowrap;font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.marquee-dot{color:var(--pink);font-size:.5rem}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ══ GRADIENT GLOW HOVER ══ */
+.glow-hover{position:relative;overflow:hidden}
+.glow-hover::after{content:'';position:absolute;inset:-2px;background:var(--grad);opacity:0;transition:opacity .5s ease;z-index:0;pointer-events:none;border-radius:inherit;filter:blur(12px)}
+.glow-hover:hover::after{opacity:.35}
+.glow-hover>*{position:relative;z-index:1}
+
+/* Animated gradient wave sweep on hover */
+@keyframes gradWave{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.glow-hover::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 0%,rgba(221,66,144,.18) 25%,rgba(93,51,117,.2) 50%,rgba(17,151,200,.18) 75%,transparent 100%);background-size:200% 100%;opacity:0;transition:opacity .3s;z-index:0;pointer-events:none;border-radius:inherit}
+.glow-hover:hover::before{opacity:1;animation:gradWave 1.8s ease infinite}
+
+
+/* ══ RESPONSIVE STACK ══ */
+@media(max-width:960px){.stack-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.stack-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     NAVBAR
+══════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+
+    <!-- LOGO: Replace the src below with your actual logo file path
+         e.g. src="assets/logo.png" or src="assets/yourlogo.svg"
+         Recommended size: height 36–40px, transparent background -->
+    <div class="nav-logo" onclick="go('home')">
+      <img src="assets/logo.png" alt="Agency Logo"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <span class="nav-logo-text" style="display:block;color:#f0eff5;-webkit-text-fill-color:#f0eff5">Lumiee Web Studio</span>
+    </div>
+
+    <ul class="nav-menu">
+      <li class="nav-item"><button class="nav-link active" data-page="home" onclick="go('home')">Home</button></li>
+      <li class="nav-item"><button class="nav-link" data-page="about" onclick="go('about')">About Us</button></li>
+      <li class="nav-item">
+        <button class="nav-link">Our Services <span class="nav-arr">▾</span></button>
+        <div class="dropdown">
+          <a class="dd-link" onclick="go('web-dev')"><span class="dd-icon">💻</span><div><div class="dd-title">Web Development</div><div class="dd-sub">Corporate, Business & Custom</div></div></a>
+          <a class="dd-link" onclick="go('product-design')"><span class="dd-icon">🎨</span><div><div class="dd-title">Product Design</div><div class="dd-sub">UI/UX & Brand Identity</div></div></a>
+          <a class="dd-link" onclick="go('seo')"><span class="dd-icon">🔍</span><div><div class="dd-title">SEO</div><div class="dd-sub">Get found on Google</div></div></a>
+        </div>
+      </li>
+      <li class="nav-item"><button class="nav-link" data-page="portfolio" onclick="go('portfolio')">Portfolio</button></li>
+      <li class="nav-item">
+        <button class="nav-link">Resources <span class="nav-arr">▾</span></button>
+        <div class="dropdown">
+          <a class="dd-link" onclick="go('blog')"><span class="dd-icon">📝</span><div><div class="dd-title">Blog</div><div class="dd-sub">Tips, guides & insights</div></div></a>
+          <a class="dd-link" onclick="go('consultation')"><span class="dd-icon">📅</span><div><div class="dd-title">Consultation</div><div class="dd-sub">Book a free strategy session</div></div></a>
+        </div>
+      </li>
+      <li class="nav-item"><button class="nav-link" data-page="contact" onclick="go('contact')">Contact</button></li>
+    </ul>
+
+    <div class="nav-right">
+      <div class="nav-account" onclick="toggleAcct()" title="Login / Sign Up">👤</div>
+      <button class="nav-cta" onclick="go('consultation')">Book a Call →</button>
+      <button class="hamburger" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
+    </div>
+
+  </div>
+</nav>
+
+<!-- Account popup -->
+<div class="acct-popup" id="acctPopup">
+  <h3>Welcome 👋</h3>
+  <p>Login or create an account to manage your projects.</p>
+  <div class="am-tabs"><button class="am-tab active" onclick="switchTab('login')">Login</button><button class="am-tab" onclick="switchTab('signup')">Sign Up</button></div>
+  <div class="am-form" id="loginForm">
+    <input class="am-input" type="email" placeholder="Email address">
+    <input class="am-input" type="password" placeholder="Password">
+    <button class="am-btn">Login →</button>
+    <div class="am-or">or</div>
+    <button class="am-wa">💬 Continue with WhatsApp</button>
+  </div>
+  <div class="am-form" id="signupForm" style="display:none">
+    <input class="am-input" type="text" placeholder="Full name">
+    <input class="am-input" type="email" placeholder="Email address">
+    <input class="am-input" type="password" placeholder="Create password">
+    <button class="am-btn">Create Account →</button>
+  </div>
+</div>
+
+<!-- Mobile drawer -->
+<div class="mob-drawer" id="mobDrawer">
+  <div class="mob-link" onclick="go('home');closeMob()">Home</div>
+  <div class="mob-link" onclick="go('about');closeMob()">About Us</div>
+  <div class="mob-link" onclick="toggleMobSub('ms1')">Our Services <span class="mob-arr">▾</span></div>
+  <div class="mob-sub" id="ms1">
+    <div class="mob-sub-link" onclick="go('web-dev');closeMob()">💻 Web Development</div>
+    <div class="mob-sub-link" onclick="go('product-design');closeMob()">🎨 Product Design</div>
+    <div class="mob-sub-link" onclick="go('seo');closeMob()">🔍 SEO</div>
+  </div>
+  <div class="mob-link" onclick="go('portfolio');closeMob()">Portfolio</div>
+  <div class="mob-link" onclick="toggleMobSub('ms2')">Resources <span class="mob-arr">▾</span></div>
+  <div class="mob-sub" id="ms2">
+    <div class="mob-sub-link" onclick="go('blog');closeMob()">📝 Blog</div>
+    <div class="mob-sub-link" onclick="go('consultation');closeMob()">📅 Consultation</div>
+  </div>
+  <div class="mob-link" onclick="go('contact');closeMob()">Contact</div>
+  <div class="mob-account-row">
+    <button class="mb-btn mb-login" onclick="closeMob();toggleAcct()">Login</button>
+    <button class="mb-btn mb-signup" onclick="closeMob();go('consultation')">Book a Call</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     FLOATING BUTTONS
+══════════════════════════════════ -->
+<!-- WhatsApp — bottom left
+     Replace the href below with your actual WhatsApp link:
+     https://wa.me/2348143329373  (your number, no + or spaces) -->
+<a class="float-wa" href="https://wa.me/2348143329373" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  💬
+</a>
+
+<!-- AI Chat — bottom right (placeholder, wire up your AI later) -->
+<button class="float-ai" onclick="toggleAIChat()" aria-label="Chat with AI Assistant">
+  🤖
+</button>
+
+<!-- AI Chat popup -->
+<div class="ai-chat-popup" id="aiChatPopup">
+  <div class="ai-chat-head">
+    <div class="ai-av">🤖</div>
+    <div>
+      <h4>AI Assistant</h4>
+      <p>Ask me anything — I'm here to help</p>
+    </div>
+    <button class="ai-chat-close" onclick="toggleAIChat()">✕</button>
+  </div>
+  <div class="ai-chat-body">
+    <div class="ai-bubble">Hi there! 👋 I'm the AI assistant for this agency. How can I help you today? You can ask me about our services, pricing, timelines, or anything else.</div>
+    <!-- AI integration goes here — replace this with your chosen AI chat SDK -->
+    <p style="font-size:.72rem;color:var(--muted);text-align:center;font-family:var(--fm);margin-top:.5rem">
+      ← AI integration coming soon →
+    </p>
+  </div>
+  <div class="ai-chat-input">
+    <input type="text" placeholder="Type your message..." id="aiMsgInput">
+    <button class="ai-send" onclick="sendAIMsg()">→</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     HOME PAGE
+══════════════════════════════════ -->
+<div id="home" class="page active">
+
+  <section class="hero">
+    <div class="orb" style="width:560px;height:560px;top:-80px;right:-180px;background:rgba(123,47,255,.16)"></div>
+    <div class="orb" style="width:360px;height:360px;bottom:0;left:-80px;background:rgba(247,37,133,.13)"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Now accepting new projects</div>
+      <h1 class="hero-title">We Build Websites<br><span class="grad-text">That Drive Results.</span></h1>
+      <p class="hero-sub">A web development & product design agency delivering high-performance corporate, business and custom websites — built to convert visitors into paying clients.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" onclick="go('portfolio')">View Our Work ↗</a>
+        <a class="btn-outline" onclick="go('web-dev')">See Pricing</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">50+</div><div class="stat-label">Projects Delivered</div></div>
+        <div><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+        <div><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
+      </div>
+    </div>
+    <div class="hero-ring"></div>
+  </section>
+
+  <!-- Services strip -->
+  <div class="strip">
+    <div class="container">
+      <div class="strip-grid">
+        <div class="strip-item" onclick="go('web-dev')"><span class="strip-icon">💻</span><div><h3>Web Development</h3><p>Corporate, Business & Custom builds</p></div></div>
+        <div class="strip-item" onclick="go('product-design')"><span class="strip-icon">🎨</span><div><h3>Product Design</h3><p>UI/UX that delights & converts</p></div></div>
+        <div class="strip-item" onclick="go('seo')"><span class="strip-icon">🔍</span><div><h3>SEO</h3><p>Get found on Google — first page</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- About the company -->
+  <section class="home-about">
+    <div class="orb" style="width:380px;height:380px;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(76,201,240,.1)"></div>
+    <div class="container">
+      <div class="ha-grid">
+        <!-- COMPANY IMAGE
+             Replace this entire div with your image when ready:
+             <img src="images/team.jpg" alt="Our Team" style="width:100%;border-radius:18px;display:block"> -->
+        <div class="company-img">
+          <div style="height:100%;border-radius:18px;overflow:hidden">
+            <img src="assets/about.jpeg" alt="Our Team" style="width:100%;height:100%;object-fit:cover;border-radius:18px;display:block">
+          </div>
+          <div class="abt-badge">
+            <div style="font-family:var(--fd);font-size:1.7rem;font-weight:700" class="grad-text">3+</div>
+            <div style="font-size:.7rem;color:var(--muted)">Years in Business</div>
+          </div>
+        </div>
+
+        <div>
+          <p class="section-label">About the Agency</p>
+          <h2 class="section-title">We Turn Your Ideas Into <span class="grad-text">Digital Realities</span></h2>
+          <p style="color:var(--muted);line-height:1.8;margin-bottom:1.1rem;font-size:.92rem">We are a web development and product design agency passionate about building clean, performant websites that don't just look good — they work hard for your business. From corporate WordPress sites to fully custom builds, our team handles it all.</p>
+          <p style="color:var(--muted);line-height:1.8;font-size:.92rem">We believe great design is invisible — your visitors shouldn't have to think, they should just feel guided. That's the experience we craft for every client.</p>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML/CSS</span><span class="skill-tag">JavaScript</span><span class="skill-tag">React</span><span class="skill-tag">WordPress</span><span class="skill-tag">Figma</span><span class="skill-tag">UI/UX</span><span class="skill-tag">Node.js</span><span class="skill-tag">SEO</span>
+          </div>
+          <div style="margin-top:1.7rem"><a class="btn-primary" onclick="go('about')">About the Agency →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Top-Rated Web Studio<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Clean Code. Real Results<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Built for Performance<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Custom Design. Zero Templates<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Trusted by Nigerian Businesses<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Fast. Responsive. Optimised<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">From Lagos to the World<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Top-Rated Web Studio<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Clean Code. Real Results<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Built for Performance<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Custom Design. Zero Templates<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Trusted by Nigerian Businesses<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Fast. Responsive. Optimised<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">From Lagos to the World<span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+  <!-- Tech Stack (home) -->
+  <section class="stack-section">
+    <div class="container">
+      <p class="section-label" style="text-align:center">Our Tech Stack</p>
+      <h2 class="section-title" style="text-align:center">Technologies We Work With</h2>
+      <div class="stack-grid">
+        <div class="stack-card"><div class="s-icon">⚛️</div><div class="s-name">React</div></div>
+        <div class="stack-card"><div class="s-icon">🌐</div><div class="s-name">HTML5</div></div>
+        <div class="stack-card"><div class="s-icon">🎨</div><div class="s-name">CSS3</div></div>
+        <div class="stack-card"><div class="s-icon">☕</div><div class="s-name">JavaScript</div></div>
+        <div class="stack-card"><div class="s-icon">🟦</div><div class="s-name">WordPress</div></div>
+        <div class="stack-card"><div class="s-icon">🖌️</div><div class="s-name">Figma</div></div>
+        <div class="stack-card"><div class="s-icon">🐍</div><div class="s-name">Node.js</div></div>
+        <div class="stack-card"><div class="s-icon">🗄️</div><div class="s-name">MySQL</div></div>
+        <div class="stack-card"><div class="s-icon">🌊</div><div class="s-name">Tailwind</div></div>
+        <div class="stack-card"><div class="s-icon">☁️</div><div class="s-name">Vercel</div></div>
+        <div class="stack-card"><div class="s-icon">🛠️</div><div class="s-name">Git</div></div>
+        <div class="stack-card"><div class="s-icon">🔷</div><div class="s-name">TypeScript</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process">
+    <div class="container">
+      <p class="section-label">How We Work</p>
+      <h2 class="section-title">Our Process</h2>
+      <div class="process-grid">
+        <div class="ps"><div class="ps-num">01</div><div class="ps-icon">💬</div><h3>Discovery</h3><p>We start by understanding your business goals, target audience and vision — asking the right questions upfront.</p></div>
+        <div class="ps"><div class="ps-num">02</div><div class="ps-icon">🎨</div><h3>Design</h3><p>Wireframes and visual mockups are created and approved before any code is written.</p></div>
+        <div class="ps"><div class="ps-num">03</div><div class="ps-icon">⚙️</div><h3>Development</h3><p>Clean, fast, responsive code — built with performance and SEO baked in from day one.</p></div>
+        <div class="ps"><div class="ps-num">04</div><div class="ps-icon">🚀</div><h3>Launch</h3><p>Testing, deployment, and handover — with post-launch support to make sure everything runs perfectly.</p></div>
+      </div>
+    </div>
+  </section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Top-Rated Web Studio<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Clean Code. Real Results<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Built for Performance<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Custom Design. Zero Templates<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Trusted by Nigerian Businesses<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Fast. Responsive. Optimised<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">From Lagos to the World<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Top-Rated Web Studio<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Clean Code. Real Results<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Built for Performance<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Custom Design. Zero Templates<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Trusted by Nigerian Businesses<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Fast. Responsive. Optimised<span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">From Lagos to the World<span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label">FAQ</p>
+      <h2 class="section-title">Common Questions</h2>
+      <div class="faq-grid">
+        <div class="faq-item"><div class="faq-q" onclick="faq(this)">How long does it take to build a website?<span class="faq-arr">▼</span></div><div class="faq-a">Corporate sites typically take 1–2 weeks. Business sites take 2–4 weeks. Custom projects vary — we provide a clear timeline before any work begins.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faq(this)">Do you include domain and hosting?<span class="faq-arr">▼</span></div><div class="faq-a">Yes. Our corporate and business packages include domain registration and hosting setup for the first year. We guide you through everything.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faq(this)">Can we update the site ourselves after launch?<span class="faq-arr">▼</span></div><div class="faq-a">Absolutely. WordPress sites come with an easy-to-use editor. We also run a handover session so your team knows exactly how to manage content.</div></div>
+        <div class="faq-item"><div class="faq-q" onclick="faq(this)">Do you offer payment plans?<span class="faq-arr">▼</span></div><div class="faq-a">Yes — 50% deposit to begin, 50% on completion. For larger custom projects we can agree a milestone-based payment structure.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="container" style="margin-bottom:7rem">
+    <div class="cta-banner glow-hover">
+      <div class="orb" style="width:220px;height:220px;top:-30px;right:-30px;filter:blur(50px);opacity:.22;background:rgba(123,47,255,.5)"></div>
+      <h2>Ready to Build Something <span class="grad-text">Exceptional?</span></h2>
+      <p>Let's turn your vision into a website that works for your business around the clock.</p>
+      <div class="cta-actions"><a class="btn-primary" onclick="go('consultation')">Book Free Consultation →</a><a class="btn-outline" onclick="go('web-dev')">View Pricing</a></div>
+    </div>
+  </div>
+
+  <!-- FULL FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo-wrap" onclick="go('home')">
+            <img src="assets/logo.png" alt="Agency Logo" style="height:28px"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span class="footer-logo-text" style="display:block">Lumiee Web Studio</span>
+          </div>
+          <p>A web development & product design agency creating websites that work as good as they look.</p>
+          <div class="footer-socials">
+            <!-- Replace # with your actual social links -->
+            <a class="f-social" href="#" target="_blank">𝕏</a>
+            <a class="f-social" href="#" target="_blank">in</a>
+            <a class="f-social" href="#" target="_blank">📸</a>
+            <a class="f-social" href="https://wa.me/2348143329373" target="_blank">💬</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a onclick="go('web-dev')">Web Development</a></li>
+            <li><a onclick="go('product-design')">Product Design</a></li>
+            <li><a onclick="go('seo')">SEO</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a onclick="go('blog')">Blog</a></li>
+            <li><a onclick="go('consultation')">Consultation</a></li>
+            <li><a onclick="go('portfolio')">Portfolio</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a onclick="go('about')">About Us</a></li>
+            <li><a onclick="go('contact')">Contact</a></li>
+            <!-- Add your WhatsApp number below -->
+            <li><a href="https://wa.me/2348143329373" target="_blank">WhatsApp</a></li>
+            <!-- Add your email below -->
+            <li><a href="mailto:hello@lumiewebstudio.com">hello@lumiewebstudio.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <!-- Update agency name and year -->
+        <p>© 2026 Lumiee Web Studio — All rights reserved.</p>
+        <p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- ══════════════════════════════════
+     WEB DEVELOPMENT / PRICING
+══════════════════════════════════ -->
+<div id="web-dev" class="page">
+  <div class="page-hero">
+    <div class="orb" style="width:480px;height:480px;top:-80px;right:-150px;filter:blur(90px);background:rgba(123,47,255,.15)"></div>
+    <div class="container">
+      <div class="ph-label">Web Development</div>
+      <h1 class="ph-title">Websites Built to <span class="grad-text">Grow Your Business</span></h1>
+      <p class="ph-desc">Three packages to fit every business size — from a clean corporate presence to a fully bespoke custom build. All include domain, hosting and SEO setup.</p>
+      <div class="ph-actions"><a class="btn-primary" onclick="go('consultation')">Get a Free Quote →</a><a class="btn-outline" onclick="go('contact')">Ask a Question</a></div>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top:1rem">
+    <div class="container">
+      <div class="cur-wrap">
+        <div class="cur-toggle">
+          <button class="cur-btn active" id="wdNgn" onclick="setCur('ngn')">₦ NGN</button>
+          <button class="cur-btn" id="wdUsd" onclick="setCur('usd')">$ USD</button>
+        </div>
+      </div>
+      <div class="pricing-grid">
+        <div class="pc">
+          <div class="pc-head"><div class="pc-type">Package 01</div><div class="pc-name">Corporate</div><div class="pc-desc">A clean professional presence — up to 5 pages, WordPress-powered with domain & hosting included.</div></div>
+          <div class="pc-price"><div class="wd-ngn"><span class="price-val">₦150,000</span></div><div class="wd-usd" style="display:none"><span class="price-val">$100</span></div><div class="price-note">Starting price · final quote after discovery</div></div>
+          <div class="pc-feats"><ul class="feat-list"><li>Up to 5 pages</li><li>WordPress CMS</li><li>Domain & Hosting (1 yr)</li><li>Business email setup</li><li>Logo design</li><li>Mobile responsive</li><li>On-page SEO</li><li>1 month post-launch support</li></ul><a class="pc-btn pc-btn-out" onclick="go('consultation')">Get a Quote</a></div>
+        </div>
+        <div class="pc featured">
+          <div class="feat-badge">Most Popular</div>
+          <div class="pc-head"><div class="pc-type">Package 02</div><div class="pc-name">Business</div><div class="pc-desc">Full-featured site for growing businesses — up to 10 pages with everything a service company needs.</div></div>
+          <div class="pc-price"><div class="wd-ngn"><span class="price-val">₦350,000</span></div><div class="wd-usd" style="display:none"><span class="price-val">$230</span></div><div class="price-note">Starting price · final quote after discovery</div></div>
+          <div class="pc-feats"><ul class="feat-list"><li>Up to 10 pages</li><li>WordPress + advanced setup</li><li>Domain & Premium Hosting</li><li>Custom design (no templates)</li><li>Blog / news section</li><li>Advanced SEO setup</li><li>Google Analytics</li><li>Social media integration</li><li>2 months post-launch support</li></ul><a class="pc-btn pc-btn-grad" onclick="go('consultation')">Get Started →</a></div>
+        </div>
+        <div class="pc">
+          <div class="pc-head"><div class="pc-type">Package 03</div><div class="pc-name">Custom</div><div class="pc-desc">Built entirely from scratch — unique features, bespoke design, and limitless possibilities.</div></div>
+          <div class="pc-price"><div class="wd-ngn"><span class="price-val" style="font-size:1.65rem;color:var(--muted)">Let's Talk</span></div><div class="wd-usd" style="display:none"><span class="price-val" style="font-size:1.65rem;color:var(--muted)">Let's Talk</span></div><div class="price-note">Priced by project scope & complexity</div></div>
+          <div class="pc-feats"><ul class="feat-list"><li>Unlimited pages</li><li>Fully bespoke design</li><li>Any stack (React, Next.js…)</li><li>Custom functionality & APIs</li><li>E-commerce capabilities</li><li>User/Admin dashboards</li><li>3 months post-launch support</li></ul><a class="pc-btn pc-btn-out" onclick="go('consultation')">Book a Call</a></div>
+        </div>
+      </div>
+      <div class="cta-banner glow-hover" style="margin:0 0 4rem"><h2>Not sure which package? <span class="grad-text">Let's talk.</span></h2><p>Book a free 15-minute consultation and we'll recommend exactly what you need.</p><div class="cta-actions"><a class="btn-primary" onclick="go('consultation')">Book Free Consultation →</a></div></div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li><li><a onclick="go('portfolio')">Portfolio</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li><li><a href="mailto:hello@lumiewebstudio.com">Email Us</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+</div>
+
+<!-- ══════════════════════════════════
+     PRODUCT DESIGN
+══════════════════════════════════ -->
+<div id="product-design" class="page">
+  <div class="page-hero">
+    <div class="orb" style="width:440px;height:440px;top:-60px;right:-110px;filter:blur(85px);background:rgba(247,37,133,.13)"></div>
+    <div class="container">
+      <div class="ph-label">Product Design</div>
+      <h1 class="ph-title">Design That <span class="grad-text">Converts & Delights</span></h1>
+      <p class="ph-desc">UI/UX design for web and mobile products. From wireframes to high-fidelity prototypes — we create experiences your users actually enjoy.</p>
+      <div class="ph-actions"><a class="btn-primary" onclick="go('consultation')">Start a Project →</a><a class="btn-outline" onclick="go('portfolio')">View Our Design Work</a></div>
+    </div>
+  </div>
+  <section class="section" style="padding-top:2rem">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.3rem;margin-bottom:3.5rem">
+        <div class="pc"><div class="pc-head"><div class="pc-type">Service 01</div><div class="pc-name" style="font-size:1.2rem">UI/UX Design</div><div class="pc-desc">Full end-to-end design — research, wireframes, visual design and interactive prototypes in Figma.</div></div></div>
+        <div class="pc featured"><div class="pc-head"><div class="pc-type">Service 02</div><div class="pc-name" style="font-size:1.2rem">Web Design</div><div class="pc-desc">Beautiful, conversion-optimised website designs handed off ready for development.</div></div></div>
+        <div class="pc"><div class="pc-head"><div class="pc-type">Service 03</div><div class="pc-name" style="font-size:1.2rem">Brand Identity</div><div class="pc-desc">Logo, colour palette, typography and brand guidelines — everything to make your business look legit.</div></div></div>
+      </div>
+      <div class="cta-banner glow-hover"><h2>Ready to design something <span class="grad-text">great?</span></h2><p>Let's chat about your project.</p><div class="cta-actions"><a class="btn-primary" onclick="go('consultation')">Book a Free Call →</a></div></div>
+    </div>
+  </section>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+</div>
+
+<!-- ══════════════════════════════════
+     SEO
+══════════════════════════════════ -->
+<div id="seo" class="page">
+  <div class="page-hero">
+    <div class="orb" style="width:440px;height:440px;top:-60px;right:-110px;filter:blur(85px);background:rgba(76,201,240,.12)"></div>
+    <div class="container">
+      <div class="ph-label">SEO Services</div>
+      <h1 class="ph-title">Get Found on <span class="grad-text">Google's First Page</span></h1>
+      <p class="ph-desc">Strategic SEO that drives real organic traffic to your website — not just rankings, but actual leads and sales.</p>
+      <div class="ph-actions"><a class="btn-primary" onclick="go('consultation')">Get a Free SEO Audit →</a></div>
+    </div>
+  </div>
+  <section class="section" style="padding-top:1rem">
+    <div class="container">
+      <div class="cur-wrap"><div class="cur-toggle"><button class="cur-btn active" onclick="setSEOCur('ngn',this)">₦ NGN</button><button class="cur-btn" onclick="setSEOCur('usd',this)">$ USD</button></div></div>
+      <div class="pricing-grid">
+        <div class="pc"><div class="pc-head"><div class="pc-type">Starter</div><div class="pc-name">Basic SEO</div><div class="pc-desc">For new websites that need a solid SEO foundation to begin ranking on Google.</div></div><div class="pc-price"><div class="seo-ngn"><span class="price-val">₦80,000</span><span style="font-size:.78rem;color:var(--muted);margin-left:.25rem">/mo</span></div><div class="seo-usd" style="display:none"><span class="price-val">$52</span><span style="font-size:.78rem;color:var(--muted);margin-left:.25rem">/mo</span></div><div class="price-note">3-month minimum</div></div><div class="pc-feats"><ul class="feat-list"><li>Keyword research</li><li>On-page SEO (10 pages)</li><li>Meta tags optimisation</li><li>Google Search Console setup</li><li>Monthly report</li></ul><a class="pc-btn pc-btn-out" onclick="go('consultation')">Get Started</a></div></div>
+        <div class="pc featured"><div class="feat-badge">Most Popular</div><div class="pc-head"><div class="pc-type">Growth</div><div class="pc-name">Business SEO</div><div class="pc-desc">For established businesses ready to dominate their niche in Google search results.</div></div><div class="pc-price"><div class="seo-ngn"><span class="price-val">₦150,000</span><span style="font-size:.78rem;color:var(--muted);margin-left:.25rem">/mo</span></div><div class="seo-usd" style="display:none"><span class="price-val">$98</span><span style="font-size:.78rem;color:var(--muted);margin-left:.25rem">/mo</span></div><div class="price-note">3-month minimum</div></div><div class="pc-feats"><ul class="feat-list"><li>Advanced keyword strategy</li><li>On-page SEO (all pages)</li><li>Technical SEO audit & fixes</li><li>Link building (5/month)</li><li>Content optimisation</li><li>Competitor analysis</li><li>Bi-weekly reports</li></ul><a class="pc-btn pc-btn-grad" onclick="go('consultation')">Get Started →</a></div></div>
+        <div class="pc"><div class="pc-head"><div class="pc-type">Enterprise</div><div class="pc-name">Custom SEO</div><div class="pc-desc">Large sites, competitive industries or e-commerce stores needing aggressive SEO strategy.</div></div><div class="pc-price"><div class="seo-ngn"><span class="price-val" style="font-size:1.65rem;color:var(--muted)">Let's Talk</span></div><div class="seo-usd" style="display:none"><span class="price-val" style="font-size:1.65rem;color:var(--muted)">Let's Talk</span></div><div class="price-note">Custom quote</div></div><div class="pc-feats"><ul class="feat-list"><li>Everything in Business SEO</li><li>E-commerce SEO</li><li>Aggressive link building</li><li>PR & digital marketing</li><li>Dedicated account manager</li><li>Weekly strategy calls</li></ul><a class="pc-btn pc-btn-out" onclick="go('consultation')">Book a Call</a></div></div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+</div>
+
+<!-- ══════════════════════════════════
+     PORTFOLIO
+══════════════════════════════════ -->
+<div id="portfolio" class="page">
+  <div class="page-hero" style="text-align:center">
+    <div class="container">
+      <div class="ph-label" style="display:block">Portfolio</div>
+      <h1 class="ph-title">Our Selected <span class="grad-text">Work</span></h1>
+      <p class="ph-desc" style="margin:0 auto">A collection of websites and digital products we've designed and built. Click any project to view the full case study.</p>
+      <div class="port-filter">
+        <button class="filt-btn active" onclick="filterP('all',this)">All</button>
+        <button class="filt-btn" onclick="filterP('corporate',this)">Corporate</button>
+        <button class="filt-btn" onclick="filterP('business',this)">Business</button>
+        <button class="filt-btn" onclick="filterP('custom',this)">Custom</button>
+        <button class="filt-btn" onclick="filterP('design',this)">Product Design</button>
+      </div>
+    </div>
+  </div>
+  <section class="section" style="padding-top:1rem">
+    <div class="container">
+      <div class="port-grid" id="portGrid">
+        <!-- PORTFOLIO CARD — to add a real image replace the div.port-img with:
+             <img src="images/project-apex.jpg" alt="Apex Law Partners" class="port-img" style="width:100%;height:auto;object-fit:cover">
+        -->
+        <div class="port-card" data-cat="corporate" onclick="openM('p1')">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">⚖️<div class="port-ov">View Case Study →</div></div>
+          <div class="port-info"><span class="port-tag">Corporate</span><h3>Apex Law Partners</h3><p>Corporate site for a Lagos-based law firm — clean, authoritative and conversion-focused.</p></div>
+        </div>
+        <div class="port-card" data-cat="business" onclick="openM('p2')">
+          <div class="port-img" style="background:linear-gradient(135deg,#0d1b2a,#1a2f4a)">🌿<div class="port-ov">View Case Study →</div></div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>GreenLeaf Consulting</h3><p>10-page business website for an environmental consulting company with online booking.</p></div>
+        </div>
+        <div class="port-card" data-cat="custom" onclick="openM('p3')">
+          <div class="port-img" style="background:linear-gradient(135deg,#2d0a1e,#1a0a35)">💹<div class="port-ov">View Case Study →</div></div>
+          <div class="port-info"><span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span><h3>Nova Finance App</h3><p>Custom fintech landing with animated dashboards and waitlist integration.</p></div>
+        </div>
+        <div class="port-card" data-cat="design" onclick="openM('p4')">
+          <div class="port-img" style="background:linear-gradient(135deg,#0a1a0d,#1a2f1e)">🌸<div class="port-ov">View Case Study →</div></div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Product Design</span><h3>Bloom Health App</h3><p>Full UI/UX for a women's health tracking mobile application.</p></div>
+        </div>
+        <div class="port-card" data-cat="corporate" onclick="openM('p5')">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a1200,#2f2200)">🚛<div class="port-ov">View Case Study →</div></div>
+          <div class="port-info"><span class="port-tag">Corporate</span><h3>Stellar Logistics</h3><p>Corporate site for a supply chain company with fleet tracking page.</p></div>
+        </div>
+        <div class="port-card" data-cat="custom" onclick="openM('p6')">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a002d,#2f0047)">👗<div class="port-ov">View Case Study →</div></div>
+          <div class="port-info"><span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span><h3>Thrift & Thread</h3><p>Custom e-commerce store with bespoke product catalogue and checkout flow.</p></div>
+        </div>
+      </div>
+      <div class="cta-banner glow-hover" style="margin-bottom:4rem"><h2>Want your project <span class="grad-text">featured here?</span></h2><p>Let's build something worth showing off.</p><div class="cta-actions"><a class="btn-primary" onclick="go('consultation')">Start a Project →</a></div></div>
+    </div>
+  </section>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+</div>
+
+<!-- ══════════════════════════════════
+     BLOG
+══════════════════════════════════ -->
+<div id="blog" class="page">
+  <div class="page-hero">
+    <div class="orb" style="width:400px;height:400px;top:-60px;right:-100px;filter:blur(85px);background:rgba(76,201,240,.1)"></div>
+    <div class="container">
+      <div class="ph-label">Blog</div>
+      <h1 class="ph-title">Insights & <span class="grad-text">Resources</span></h1>
+      <p class="ph-desc">Tips, guides and real talk on web development, design, and growing your business online.</p>
+    </div>
+  </div>
+  <section class="section" style="padding-top:1rem">
+    <div class="container">
+      <div class="blog-grid">
+        <!-- BLOG CARD — to add a real image replace div.blog-img with:
+             <img src="images/blog-post-1.jpg" alt="Post Title" class="blog-img" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
+        -->
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a0a2e,#0d1b2a)">📱</div><div class="blog-body"><span class="blog-cat">Web Design</span><h3>Why Your Business Needs a Professional Website in 2026</h3><p>Still running your business off a WhatsApp link? Here's why a real website changes everything for your credibility and sales.</p><div class="blog-meta"><span>Jan 10, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#0a1a0d,#0d2a1a)">🔍</div><div class="blog-body"><span class="blog-cat">SEO</span><h3>5 SEO Mistakes Nigerian Businesses Keep Making</h3><p>From ignoring Google My Business to keyword stuffing — these errors are costing businesses thousands in lost traffic.</p><div class="blog-meta"><span>Jan 22, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#2d0a1e,#1a0038)">🎨</div><div class="blog-body"><span class="blog-cat">Design</span><h3>What Makes a Great Website Design? (2026 Edition)</h3><p>Speed, simplicity and mobile-first thinking. What separates a good site from a forgettable one.</p><div class="blog-meta"><span>Feb 3, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a1200,#2f2200)">💰</div><div class="blog-body"><span class="blog-cat">Business</span><h3>How Much Does a Website Really Cost in Nigeria?</h3><p>A transparent breakdown of web development costs — what drives prices up and what's actually worth paying for.</p><div class="blog-meta"><span>Feb 10, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#001a2d,#002f47)">⚡</div><div class="blog-body"><span class="blog-cat">Development</span><h3>WordPress vs Custom Builds: Which is Right for You?</h3><p>Both have their place. How to decide which approach makes sense for your specific business and budget.</p><div class="blog-meta"><span>Feb 17, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#0d1a0d,#1a2f1a)">📊</div><div class="blog-body"><span class="blog-cat">Business</span><h3>How to Brief a Web Developer (And Get What You Want)</h3><p>The most common reason projects go wrong is a bad brief. Here's how to give your developer everything they need.</p><div class="blog-meta"><span>Feb 20, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+</div>
+
+<!-- ══════════════════════════════════
+     CONSULTATION
+══════════════════════════════════ -->
+<div id="consultation" class="page">
+  <div class="page-hero">
+    <div class="orb" style="width:400px;height:400px;top:-60px;left:-100px;filter:blur(85px);background:rgba(123,47,255,.14)"></div>
+    <div class="container">
+      <div class="ph-label">Consultation</div>
+      <h1 class="ph-title">Let's Talk About <span class="grad-text">Your Project</span></h1>
+      <p class="ph-desc">Book a free strategy session — no sales pressure, just an honest conversation about what your business needs.</p>
+    </div>
+  </div>
+  <section class="section" style="padding-top:1rem">
+    <div class="container">
+      <div class="consult-grid">
+        <div class="consult-info">
+          <h2>What to Expect</h2>
+          <p>Our consultation is a free, no-commitment conversation about your business goals and what digital solution would work best for you. We give honest advice — even if that means telling you what you don't need.</p>
+          <div class="perks">
+            <div class="perk"><span class="perk-icon">🆓</span><div><div class="perk-title">Completely Free</div><div class="perk-desc">No cost, no strings attached.</div></div></div>
+            <div class="perk"><span class="perk-icon">⏱️</span><div><div class="perk-title">20–60 Minutes</div><div class="perk-desc">Choose a duration that works for you.</div></div></div>
+            <div class="perk"><span class="perk-icon">💬</span><div><div class="perk-title">Video, Call or WhatsApp</div><div class="perk-desc">Whatever you're most comfortable with.</div></div></div>
+            <div class="perk"><span class="perk-icon">📋</span><div><div class="perk-title">Clear Next Steps</div><div class="perk-desc">You'll leave knowing exactly what to do.</div></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="form-wrap">
+            <h3>Book Your Session 📅</h3>
+            <div id="cFW">
+              <div class="f-row"><div class="fg"><label>First Name</label><input type="text" placeholder="Ada"></div><div class="fg"><label>Last Name</label><input type="text" placeholder="Okonkwo"></div></div>
+              <div class="fg"><label>Email</label><input type="email" placeholder="ada@company.com"></div>
+              <div class="fg"><label>Phone / WhatsApp</label><input type="tel" placeholder="+234 000 000 0000"></div>
+              <div class="fg"><label>Preferred Method</label><select><option value="">Select...</option><option>Video Call</option><option>Phone Call</option><option>WhatsApp</option></select></div>
+              <div class="f-row"><div class="fg"><label>Preferred Date</label><input type="date"></div><div class="fg"><label>Preferred Time</label><select><option value="">Select...</option><option>Morning (9–12pm)</option><option>Afternoon (12–5pm)</option><option>Evening (5–8pm)</option><option>Flexible</option></select></div></div>
+              <div class="fg"><label>Session Duration</label><select><option value="">Select...</option><option>20 minutes</option><option>40 minutes</option><option>60 minutes</option></select></div>
+              <div class="fg"><label>About Your Project</label><textarea placeholder="What are you trying to build? Budget? Reference sites you like?"></textarea></div>
+              <button class="f-submit" onclick="submitC()">Book My Consultation →</button>
+            </div>
+            <div class="f-success" id="cFS">✦ Consultation booked!<br><br>We'll be in touch within 24 hours to confirm your session time.<br>Check your email for a confirmation shortly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+</div>
+
+<!-- ══════════════════════════════════
+     ABOUT US
+══════════════════════════════════ -->
+<div id="about" class="page">
+  <section class="section" style="padding-top:7.5rem">
+    <div class="container">
+      <div class="about-company-grid">
+        <div>
+          <p class="section-label">Who We Are</p>
+          <h1 style="font-family:var(--fd);font-size:clamp(2.4rem,5.5vw,4.5rem);font-weight:900;line-height:1.05;margin-bottom:1.1rem">We Are<br><span class="grad-text">Lumiee Web Studio.</span></h1>
+          <p style="color:var(--muted);font-size:.92rem;line-height:1.8;margin-bottom:.9rem">We are a web development and product design agency passionate about building clean, high-performance websites that deliver real business results. Based in Nigeria, working with clients worldwide.</p>
+          <p style="color:var(--muted);font-size:.92rem;line-height:1.8;margin-bottom:1.7rem">Our team brings together expertise in web development, UI/UX design, and digital strategy — so every project we take on gets the full picture, not just the code.</p>
+          <div style="display:flex;gap:.9rem;flex-wrap:wrap">
+            <a class="btn-primary" onclick="go('consultation')">Work With Us →</a>
+            <a class="btn-outline" onclick="go('portfolio')">See Our Work</a>
+          </div>
+        </div>
+        <div>
+          <!-- TEAM IMAGE PLACEHOLDER
+               Replace this entire div with your image when ready:
+               <img src="images/team.jpg" alt="Our Team" style="width:100%;border-radius:18px;display:block"> -->
+          <div class="team-img">
+            <img src="assets/about.jpeg" alt="Our Team" style="width:100%;border-radius:18px;display:block">
+          </div>
+        </div>
+      </div>
+
+      <div class="vals-grid">
+        <div class="val-card"><div class="val-icon">🎯</div><h3>Purpose-Driven Design</h3><p>Every decision has a reason — conversion, clarity, or delight. Nothing is decorative without a function.</p></div>
+        <div class="val-card"><div class="val-icon">⚡</div><h3>Performance Obsessed</h3><p>Slow websites lose business. We build for speed first, so your visitors never have to wait.</p></div>
+        <div class="val-card"><div class="val-icon">🤝</div><h3>Client Partnership</h3><p>We don't disappear after delivery. We're invested in your long-term success, not just the launch.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack (about) -->
+  <section class="stack-section">
+    <div class="container">
+      <p class="section-label" style="text-align:center">Our Tech Stack</p>
+      <h2 class="section-title" style="text-align:center">Technologies We Work With</h2>
+      <div class="stack-grid">
+        <div class="stack-card"><div class="s-icon">⚛️</div><div class="s-name">React</div></div>
+        <div class="stack-card"><div class="s-icon">🌐</div><div class="s-name">HTML5</div></div>
+        <div class="stack-card"><div class="s-icon">🎨</div><div class="s-name">CSS3</div></div>
+        <div class="stack-card"><div class="s-icon">☕</div><div class="s-name">JavaScript</div></div>
+        <div class="stack-card"><div class="s-icon">🟦</div><div class="s-name">WordPress</div></div>
+        <div class="stack-card"><div class="s-icon">🖌️</div><div class="s-name">Figma</div></div>
+        <div class="stack-card"><div class="s-icon">🐍</div><div class="s-name">Node.js</div></div>
+        <div class="stack-card"><div class="s-icon">🗄️</div><div class="s-name">MySQL</div></div>
+        <div class="stack-card"><div class="s-icon">🌊</div><div class="s-name">Tailwind</div></div>
+        <div class="stack-card"><div class="s-icon">☁️</div><div class="s-name">Vercel</div></div>
+        <div class="stack-card"><div class="s-icon">🛠️</div><div class="s-name">Git</div></div>
+        <div class="stack-card"><div class="s-icon">🔷</div><div class="s-name">TypeScript</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container" style="margin:6rem auto">
+    <div class="cta-banner glow-hover">
+      <h2>Let's <span class="grad-text">Build Together</span></h2>
+      <p>Ready to take your digital presence seriously? Let's talk about what we can build together.</p>
+      <div class="cta-actions"><a class="btn-primary" onclick="go('consultation')">Book a Free Consultation →</a><a class="btn-outline" onclick="go('portfolio')">See Our Work</a></div>
+    </div>
+  </div>
+
+
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency creating websites that work as good as they look.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li><li><a onclick="go('portfolio')">Portfolio</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li><li><a href="mailto:hello@lumiewebstudio.com">hello@lumiewebstudio.com</a></li><li><a href="https://wa.me/2348143329373">WhatsApp</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+</div>
+
+<!-- ══════════════════════════════════
+     CONTACT
+══════════════════════════════════ -->
+<div id="contact" class="page">
+  <section class="section" style="padding-top:7rem">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <p class="section-label">Contact</p>
+          <h1 style="font-family:var(--fd);font-size:clamp(1.9rem,4vw,3.1rem);font-weight:700;margin-bottom:.9rem">Let's Build Something <span class="grad-text">Together.</span></h1>
+          <p style="color:var(--muted);line-height:1.75;font-size:.9rem;margin-bottom:.3rem">Have a project in mind? Reach out and we'll get back to you within 24 hours — usually much faster.</p>
+          <div class="contact-methods">
+            <!-- Replace with your actual email and links -->
+            <a class="cm" href="mailto:hello@lumiewebstudio.com"><span class="cm-icon">📧</span><div><div class="cm-label">Email</div><div class="cm-val">hello@lumiewebstudio.com</div></div></a>
+            <a class="cm" href="https://wa.me/2348143329373" target="_blank"><span class="cm-icon">💬</span><div><div class="cm-label">WhatsApp</div><div class="cm-val">+234 XXX XXX XXXX</div></div></a>
+            <a class="cm" href="#" target="_blank"><span class="cm-icon">📸</span><div><div class="cm-label">Instagram</div><div class="cm-val">@yourhandle</div></div></a>
+            <a class="cm" href="#" target="_blank"><span class="cm-icon">💼</span><div><div class="cm-label">LinkedIn</div><div class="cm-val">Lumiee Web Studio</div></div></a>
+          </div>
+        </div>
+        <div>
+          <div class="form-wrap">
+            <h3>Send Us a Message 💌</h3>
+            <div id="ctFW">
+              <div class="f-row"><div class="fg"><label>First Name</label><input type="text" placeholder="Ada"></div><div class="fg"><label>Last Name</label><input type="text" placeholder="Okonkwo"></div></div>
+              <div class="fg"><label>Email</label><input type="email" placeholder="ada@company.com"></div>
+              <div class="fg"><label>What do you need?</label><select><option value="">Select a service...</option><option>Corporate Website</option><option>Business Website</option><option>Custom Website</option><option>Product Design</option><option>SEO</option><option>Something else</option></select></div>
+              <div class="fg"><label>Message</label><textarea placeholder="Tell us about your project..."></textarea></div>
+              <button class="f-submit" onclick="submitCt()">Send Message →</button>
+            </div>
+            <div class="f-success" id="ctFS">✦ Message received!<br><br>We'll be in touch within 24 hours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency creating websites that work as good as they look.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+</div>
+
+<!-- Portfolio Modal -->
+<div class="modal-overlay" id="mOverlay" onclick="closeMOut(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeM()">✕</button>
+    <div class="modal-img" id="mI">🖥️</div>
+    <div class="modal-body">
+      <div class="modal-tag" id="mTg"></div>
+      <h2 class="modal-title" id="mTt"></h2>
+      <div class="modal-meta" id="mMt"></div>
+      <p class="modal-desc" id="mDs"></p>
+      <a class="btn-primary" onclick="go('consultation');closeM()">Start a Similar Project →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── PORTFOLIO DATA ──
+const pdata={
+  p1:{tag:'Corporate · WordPress',title:'Apex Law Partners',emoji:'⚖️',meta:[{l:'Client',v:'Apex Law Partners'},{l:'Type',v:'Corporate'},{l:'Pages',v:'5'},{l:'Duration',v:'2 Weeks'}],desc:'A professional 5-page WordPress website for a Lagos-based law firm. Clean, authoritative design with a case-results section and direct inquiry form. Result: 40% increase in online client inquiries within the first month of launch.'},
+  p2:{tag:'Business · WordPress',title:'GreenLeaf Consulting',emoji:'🌿',meta:[{l:'Client',v:'GreenLeaf Consulting'},{l:'Type',v:'Business'},{l:'Pages',v:'10'},{l:'Duration',v:'3 Weeks'}],desc:'A full 10-page business website for an environmental consulting firm targeting corporate clients. Includes a services directory, team profiles, an online booking system and an integrated blog.'},
+  p3:{tag:'Custom · React',title:'Nova Finance App',emoji:'💹',meta:[{l:'Client',v:'Nova Finance'},{l:'Type',v:'Custom Landing'},{l:'Stack',v:'React + Node'},{l:'Duration',v:'4 Weeks'}],desc:'A bespoke fintech landing page with animated data dashboards and waitlist integration. Drove 2,000+ waitlist signups in the first week through referral mechanics built directly into the UI.'},
+  p4:{tag:'Product Design · Figma',title:'Bloom Health App',emoji:'🌸',meta:[{l:'Client',v:'Bloom Health'},{l:'Type',v:'Mobile Design'},{l:'Tool',v:'Figma'},{l:'Duration',v:'3 Weeks'}],desc:"End-to-end UI/UX design for a women's health tracking mobile app — user research, IA, wireframing, visual design, and interactive prototype. Includes a full component library."},
+  p5:{tag:'Corporate · WordPress',title:'Stellar Logistics',emoji:'🚛',meta:[{l:'Client',v:'Stellar Logistics'},{l:'Type',v:'Corporate'},{l:'Pages',v:'5'},{l:'Duration',v:'2 Weeks'}],desc:'Corporate website for a supply chain company operating across West Africa. Features a fleet status section, route coverage map and RFQ form integrated with their CRM.'},
+  p6:{tag:'Custom · WooCommerce',title:'Thrift & Thread',emoji:'👗',meta:[{l:'Client',v:'Thrift & Thread'},{l:'Type',v:'E-Commerce'},{l:'Stack',v:'WooCommerce'},{l:'Duration',v:'5 Weeks'}],desc:'A fully custom e-commerce store for a fashion brand specialising in curated vintage pieces. Bespoke product catalogue, style quiz, Instagram integration and custom checkout. Sales increased 3x vs their previous setup.'}
+};
+
+// ── NAVIGATION ──
+function go(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.nav-link[data-page]').forEach(a=>a.classList.toggle('active',a.dataset.page===id));
+  window.scrollTo(0,0);
+  closeAcctPopup();
+}
+
+// ── MOBILE NAV ──
+function toggleMob(){
+  const d=document.getElementById('mobDrawer'),h=document.getElementById('ham');
+  d.classList.toggle('open');h.classList.toggle('open');
+}
+function closeMob(){
+  document.getElementById('mobDrawer').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+}
+function toggleMobSub(id){document.getElementById(id).classList.toggle('open')}
+
+// ── ACCOUNT ──
+function toggleAcct(){document.getElementById('acctPopup').classList.toggle('open')}
+function closeAcctPopup(){document.getElementById('acctPopup').classList.remove('open')}
+function switchTab(t){
+  document.querySelectorAll('.am-tab').forEach((b,i)=>b.classList.toggle('active',i===(t==='login'?0:1)));
+  document.getElementById('loginForm').style.display=t==='login'?'flex':'none';
+  document.getElementById('signupForm').style.display=t==='signup'?'flex':'none';
+}
+document.addEventListener('click',e=>{
+  const p=document.getElementById('acctPopup'),ic=document.querySelector('.nav-account');
+  if(p&&ic&&!p.contains(e.target)&&!ic.contains(e.target))closeAcctPopup();
+});
+
+// ── AI CHAT ──
+function toggleAIChat(){document.getElementById('aiChatPopup').classList.toggle('open')}
+function sendAIMsg(){
+  const inp=document.getElementById('aiMsgInput');
+  if(!inp.value.trim())return;
+  // Placeholder — replace with actual AI API call
+  inp.value='';
+}
+
+// ── CURRENCY (web dev) ──
+function setCur(c){
+  document.getElementById('wdNgn').classList.toggle('active',c==='ngn');
+  document.getElementById('wdUsd').classList.toggle('active',c==='usd');
+  document.querySelectorAll('.wd-ngn').forEach(el=>el.style.display=c==='ngn'?'block':'none');
+  document.querySelectorAll('.wd-usd').forEach(el=>el.style.display=c==='usd'?'block':'none');
+}
+function setSEOCur(c,btn){
+  btn.parentElement.querySelectorAll('.cur-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.seo-ngn').forEach(el=>el.style.display=c==='ngn'?'block':'none');
+  document.querySelectorAll('.seo-usd').forEach(el=>el.style.display=c==='usd'?'block':'none');
+}
+
+// ── FAQ ──
+function faq(el){
+  const item=el.parentElement,open=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!open)item.classList.add('open');
+}
+
+// ── PORTFOLIO FILTER ──
+function filterP(cat,btn){
+  document.querySelectorAll('.filt-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.port-card').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.cat===cat)?'block':'none';
+  });
+}
+
+// ── PORTFOLIO MODAL ──
+function openM(id){
+  const p=pdata[id];
+  document.getElementById('mTg').textContent=p.tag;
+  document.getElementById('mTt').textContent=p.title;
+  document.getElementById('mI').textContent=p.emoji;
+  document.getElementById('mDs').textContent=p.desc;
+  document.getElementById('mMt').innerHTML=p.meta.map(m=>`<div class="meta-it"><div class="ml">${m.l}</div><div class="mv">${m.v}</div></div>`).join('');
+  document.getElementById('mOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeM(){document.getElementById('mOverlay').classList.remove('open');document.body.style.overflow='';}
+function closeMOut(e){if(e.target===document.getElementById('mOverlay'))closeM();}
+
+// ── FORMS ──
+function submitC(){document.getElementById('cFW').style.display='none';document.getElementById('cFS').style.display='block';}
+function submitCt(){document.getElementById('ctFW').style.display='none';document.getElementById('ctFS').style.display='block';}
+
+// ── ESC KEY ──
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeM();closeAcctPopup();document.getElementById('aiChatPopup').classList.remove('open');}});
+</script>
+</body>
+</html>
