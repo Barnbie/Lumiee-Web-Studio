@@ -306,7 +306,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
    <img src="images/project-name.jpg" alt="Project Name" class="port-img-real">
    CSS: .port-img-real{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
 */
-.port-img{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:2.7rem;color:rgba(255,255,255,.06);position:relative;overflow:hidden;transition:transform .5s}
+.port-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.port-img{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:2.7rem;color:rgba(255,255,255,.06);position:relative;transition:transform .5s}
 .port-card:hover .port-img{transform:scale(1.04)}
 .port-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(221,66,144,.7),rgba(17,151,200,.7));display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;color:#fff;font-weight:600;font-size:.88rem}
 .port-card:hover .port-ov{opacity:1}
@@ -929,30 +935,78 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
         <!-- PORTFOLIO CARD — to add a real image replace the div.port-img with:
              <img src="images/project-apex.jpg" alt="Apex Law Partners" class="port-img" style="width:100%;height:auto;object-fit:cover">
         -->
-        <div class="port-card" data-cat="corporate" onclick="openM('p1')">
-          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">⚖️<div class="port-ov">View Case Study →</div></div>
-          <div class="port-info"><span class="port-tag">Corporate</span><h3>Apex Law Partners</h3><p>Corporate site for a Lagos-based law firm — clean, authoritative and conversion-focused.</p></div>
+      <a href="https://panicalertapp.com/" target="_blank" class="port-link">
+        <div class="port-card" data-cat="corporate">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
+            <img src="assets/panicalert.png" alt="Appfocus MPCS Website" class="port-image">
+            <div class="port-ov">View Website →</div>
+          </div>
+          <div class="port-info"><span class="port-tag">Corporate</span><h3>Panic Alert</h3><p>Corporate site for a Multi-purpose Cooperate Society.</p></div>
         </div>
-        <div class="port-card" data-cat="business" onclick="openM('p2')">
-          <div class="port-img" style="background:linear-gradient(135deg,#0d1b2a,#1a2f4a)">🌿<div class="port-ov">View Case Study →</div></div>
-          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>GreenLeaf Consulting</h3><p>10-page business website for an environmental consulting company with online booking.</p></div>
+      </a>
+      <a href="https://appfocusng.com/" target="_blank" class="port-link">
+        <div class="port-card" data-cat="business">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
+            <img src="assets/ecommerce.png" alt="Appfocus MPCS Website" class="port-image">
+            <div class="port-ov">View Website →</div>
+          </div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>Bare Essence</h3><p>10-page business website for an environmental consulting company with online booking.</p></div>
         </div>
-        <div class="port-card" data-cat="custom" onclick="openM('p3')">
-          <div class="port-img" style="background:linear-gradient(135deg,#2d0a1e,#1a0a35)">💹<div class="port-ov">View Case Study →</div></div>
+      </a>
+      <a href="https://appfocusng.com/" target="_blank" class="port-link">
+        <div class="port-card" data-cat="custom">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
+            <img src="assets/appfocus.png" alt="Appfocus MPCS Website" class="port-image">
+            <div class="port-ov">View Website →</div>
+          </div>
           <div class="port-info"><span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span><h3>Nova Finance App</h3><p>Custom fintech landing with animated dashboards and waitlist integration.</p></div>
         </div>
-        <div class="port-card" data-cat="design" onclick="openM('p4')">
-          <div class="port-img" style="background:linear-gradient(135deg,#0a1a0d,#1a2f1e)">🌸<div class="port-ov">View Case Study →</div></div>
-          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Product Design</span><h3>Bloom Health App</h3><p>Full UI/UX for a women's health tracking mobile application.</p></div>
+      </a>
+      <a href="https://appfocusng.com/" target="_blank" class="port-link">
+        <div class="port-card" data-cat="design">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
+            <img src="assets/palgo.png" alt="Appfocus MPCS Website" class="port-image">
+            <div class="port-ov">View Case Study →</div>
+          </div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Product Design</span><h3>Palgo Mobile App</h3><p>Full UI/UX for a women's health tracking mobile application.</p></div>
         </div>
-        <div class="port-card" data-cat="corporate" onclick="openM('p5')">
-          <div class="port-img" style="background:linear-gradient(135deg,#1a1200,#2f2200)">🚛<div class="port-ov">View Case Study →</div></div>
-          <div class="port-info"><span class="port-tag">Corporate</span><h3>Stellar Logistics</h3><p>Corporate site for a supply chain company with fleet tracking page.</p></div>
+      </a>
+      <a href="https://appfocusng.com/" target="_blank" class="port-link">
+        <div class="port-card" data-cat="business">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
+            <img src="assets/nexarq.png" alt="Appfocus MPCS Website" class="port-image">
+            <div class="port-ov">View Website →</div>
+          </div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>Bare Essence</h3><p>10-page business website for an environmental consulting company with online booking.</p></div>
         </div>
-        <div class="port-card" data-cat="custom" onclick="openM('p6')">
-          <div class="port-img" style="background:linear-gradient(135deg,#1a002d,#2f0047)">👗<div class="port-ov">View Case Study →</div></div>
-          <div class="port-info"><span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span><h3>Thrift & Thread</h3><p>Custom e-commerce store with bespoke product catalogue and checkout flow.</p></div>
+      </a>
+      <a href="https://kolisamicrofinance.com/" target="_blank" class="port-link">
+        <div class="port-card" data-cat="custom">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
+            <img src="assets/kolisa.png" alt="Appfocus MPCS Website" class="port-image">
+            <div class="port-ov">View Website →</div>
+          </div>
+          <div class="port-info"><span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span><h3>Kolisa MFB</h3><p>Custom e-commerce store with bespoke product catalogue and checkout flow.</p></div>
         </div>
+      </a>
+      <a href="https://appfocusng.com/" target="_blank" class="port-link">
+        <div class="port-card" data-cat="design">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
+            <img src="assets/lumispend.png" alt="lumispend" class="port-image">
+            <div class="port-ov">View Case Study →</div>
+          </div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Product Design</span><h3>Lumi Spend Mobile App</h3><p>Full UI/UX for a women's health tracking mobile application.</p></div>
+        </div>
+      </a>
+      <a href="https://appfocusng.com/" target="_blank" class="port-link">
+        <div class="port-card" data-cat="business">
+          <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
+            <img src="assets/nexarq.png" alt="Appfocus MPCS Website" class="port-image">
+            <div class="port-ov">View Website →</div>
+          </div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>Eston Foods</h3><p>10-page business website for an environmental consulting company with online booking.</p></div>
+        </div>
+      </a>
       </div>
       <div class="cta-banner glow-hover" style="margin-bottom:4rem"><h2>Want your project <span class="grad-text">featured here?</span></h2><p>Let's build something worth showing off.</p><div class="cta-actions"><a class="btn-primary" onclick="go('consultation')">Start a Project →</a></div></div>
     </div>
