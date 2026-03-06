@@ -100,17 +100,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .am-input::placeholder{color:var(--muted)}
 .am-btn{padding:.75rem;background:var(--grad);border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.85rem;font-weight:600;cursor:pointer}
 .am-or{text-align:center;color:var(--muted);font-size:.75rem}
-.am-wa{padding:.7rem;background:linear-gradient(135deg,#25d366,#128c7e);border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.83rem;font-weight:600;cursor:pointer}
+.am-wa{padding:.7rem;background:linear-gradient(135deg,#25d366,#128c7e);border:none;border-radius:9px;color:#fff;align-items:center;font-family:var(--fb);font-size:.83rem;font-weight:600;cursor:pointer}
+.am-wa-img{width: auto;height: 30px;margin-right: 1rem;}
 
 /* ══ FLOATING BUTTONS ══ */
 /* WhatsApp — bottom left */
-.float-wa{position:fixed;bottom:1.8rem;left:1.8rem;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#25d366,#128c7e);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s;text-decoration:none;font-size:1.4rem}
+.float-wa{position:fixed;bottom:1.8rem;left:1.8rem;width:52px;height:52px;border-radius:50%;background:(var(--black));display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s;text-decoration:none;font-size:1.4rem}
 .float-wa:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 8px 28px rgba(37,211,102,.55)}
 .float-wa::after{content:'Chat on WhatsApp';position:absolute;left:calc(100% + 10px);background:rgba(10,10,15,.95);color:#fff;font-family:var(--fb);font-size:.75rem;padding:.3rem .7rem;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid var(--border)}
 .float-wa:hover::after{opacity:1}
+.float-wa-img{width:auto;height:30px;}
 
 /* AI Chat — bottom right */
-.float-ai{position:fixed;bottom:1.8rem;right:1.8rem;width:52px;height:52px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(123,47,255,.45);transition:transform .25s,box-shadow .25s;font-size:1.3rem;border:none}
+.float-ai{position:fixed;bottom:1.8rem;right:1.8rem;width:52px;height:52px;border-radius:50%;background:(var(--black));display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(123,47,255,.45);transition:transform .25s,box-shadow .25s;font-size:1.3rem;border:none}
 .float-ai:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 8px 28px rgba(123,47,255,.6)}
 .float-ai::after{content:'Chat with AI';position:absolute;right:calc(100% + 10px);background:rgba(10,10,15,.95);color:#fff;font-family:var(--fb);font-size:.75rem;padding:.3rem .7rem;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid var(--border)}
 .float-ai:hover::after{opacity:1}
@@ -428,8 +430,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .marquee-wrap{overflow:hidden;padding:.9rem 0;background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .marquee-track{display:flex;width:max-content;animation:marquee 28s linear infinite}
 .marquee-track:hover{animation-play-state:paused}
-.marquee-item{display:flex;align-items:center;gap:.6rem;padding:0 2.2rem;white-space:nowrap;font-family:var(--fm);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.marquee-dot{color:var(--pink);font-size:.5rem}
+.marquee-item{display:flex;align-items:center;gap:.6rem;padding:0 2.2rem;white-space:nowrap;font-family:var(--fm);font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink)}
+.marquee-dot{color:var(--blue);font-size:.8rem}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ══ GRADIENT GLOW HOVER ══ */
@@ -511,7 +513,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
     <input class="am-input" type="password" placeholder="Password">
     <button class="am-btn">Login →</button>
     <div class="am-or">or</div>
-    <button class="am-wa">💬 Continue with WhatsApp</button>
+    <button class="am-wa"><img src="assets/whatsapp.png" class="am-wa-img">Continue with WhatsApp</button>
   </div>
   <div class="am-form" id="signupForm" style="display:none">
     <input class="am-input" type="text" placeholder="Full name">
@@ -551,7 +553,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
      Replace the href below with your actual WhatsApp link:
      https://wa.me/2348143329373  (your number, no + or spaces) -->
 <a class="float-wa" href="https://wa.me/2348143329373" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-  💬
+ <img src="assets/whatsapp.png" class="float-wa-img">
 </a>
 
 <!-- AI Chat — bottom right (placeholder, wire up your AI later) -->
