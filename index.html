@@ -11,7 +11,7 @@
   --black:#050507;--dark:#0d0d12;--card:#111118;--border:rgba(255,255,255,0.07);
   --pink:#DD4290;--purple:#5D3375;--blue:#1197C8;
   --grad:linear-gradient(135deg,#DD4290,#5D3375,#1197C8);
-  --grad-text:linear-gradient(90deg,#DD4290 0%,#5D3375 50%,#1197C8 100%);
+  --grad-text:#DD4290;
   --white:#f0eff5;--muted:#8888a0;
   --fd:'Playfair Display',serif;--fb:'DM Sans',sans-serif;--fm:'Space Mono',monospace;
 }
@@ -36,7 +36,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .nav-logo{cursor:pointer;flex-shrink:0;display:flex;align-items:center}
 .nav-logo img{height:36px;width:auto;object-fit:contain}
 /* Fallback text shown if image missing */
-.nav-logo-text{font-family:var(--fm);font-size:.93rem;font-weight:700;background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:none}
+.nav-logo-text{font-family:var(--fm);font-size:.93rem;font-weight:700;background:var(--pink);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:none}
 
 /* Centered nav menu */
 .nav-menu{display:flex;align-items:center;justify-content:center;list-style:none;gap:0}
@@ -64,7 +64,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .nav-right{display:flex;align-items:center;gap:1.2rem;flex-shrink:0}
 .nav-account{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.05);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--muted);font-size:.85rem}
 .nav-account:hover{border-color:var(--blue);background:rgba(17,151,200,.1);color:var(--white)}
-.nav-cta{padding:.5rem 1.2rem;background:var(--grad);border:none;border-radius:8px;color:#fff;font-family:var(--fb);font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
+.nav-cta{padding:.5rem 1.2rem;background:#1197C8;border:none;border-radius:8px;color:#fff;font-family:var(--fb);font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
 .nav-cta:hover{opacity:.85;transform:translateY(-1px)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
 .hamburger span{display:block;width:21px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
@@ -84,7 +84,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .mob-account-row{display:flex;gap:.8rem;margin-top:1.8rem}
 .mb-btn{flex:1;padding:.8rem;border-radius:10px;text-align:center;font-weight:600;font-size:.88rem;cursor:pointer;font-family:var(--fb);border:none}
 .mb-login{background:transparent;border:1px solid var(--border);color:var(--white)}
-.mb-signup{background:var(--grad);color:#fff}
+.mb-signup{background:#1197C8;color:#fff}
 
 /* Account popup */
 .acct-popup{position:fixed;top:72px;right:4%;width:310px;background:rgba(10,10,15,.99);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:1.4rem;z-index:2000;backdrop-filter:blur(20px);opacity:0;pointer-events:none;transform:translateY(-6px);transition:all .22s;box-shadow:0 16px 40px rgba(0,0,0,.5)}
@@ -98,21 +98,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .am-input{padding:.7rem .9rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;color:var(--white);font-family:var(--fb);font-size:.83rem;outline:none;transition:border-color .2s;width:100%}
 .am-input:focus{border-color:var(--purple)}
 .am-input::placeholder{color:var(--muted)}
-.am-btn{padding:.75rem;background:var(--grad);border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.85rem;font-weight:600;cursor:pointer}
+.am-btn{padding:.75rem;background:#1197C8;border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.85rem;font-weight:600;cursor:pointer}
 .am-or{text-align:center;color:var(--muted);font-size:.75rem}
-.am-wa{padding:.7rem;background:linear-gradient(135deg,#25d366,#128c7e);border:none;border-radius:9px;color:#fff;align-items:center;font-family:var(--fb);font-size:.83rem;font-weight:600;cursor:pointer}
 .am-wa-img{width: auto;height: 30px;margin-right: 1rem;}
+.am-wa{padding:.7rem;background:#000;border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.83rem;font-weight:600;cursor:pointer}
 
 /* ══ FLOATING BUTTONS ══ */
 /* WhatsApp — bottom left */
-.float-wa{position:fixed;bottom:1.8rem;left:1.8rem;width:52px;height:52px;border-radius:50%;background:(var(--black));display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s;text-decoration:none;font-size:1.4rem}
+.float-wa{position:fixed;bottom:1.8rem;left:1.8rem;width:52px;height:52px;border-radius:50%;background:#000;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .25s,box-shadow .25s;text-decoration:none;font-size:1.4rem}
 .float-wa:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 8px 28px rgba(37,211,102,.55)}
 .float-wa::after{content:'Chat on WhatsApp';position:absolute;left:calc(100% + 10px);background:rgba(10,10,15,.95);color:#fff;font-family:var(--fb);font-size:.75rem;padding:.3rem .7rem;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid var(--border)}
 .float-wa:hover::after{opacity:1}
 .float-wa-img{width:auto;height:30px;}
 
+
 /* AI Chat — bottom right */
-.float-ai{position:fixed;bottom:1.8rem;right:1.8rem;width:52px;height:52px;border-radius:50%;background:(var(--black));display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(123,47,255,.45);transition:transform .25s,box-shadow .25s;font-size:1.3rem;border:none}
+.float-ai{position:fixed;bottom:1.8rem;right:1.8rem;width:52px;height:52px;border-radius:50%;background:#000;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(123,47,255,.45);transition:transform .25s,box-shadow .25s;font-size:1.3rem;border:none}
 .float-ai:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 8px 28px rgba(123,47,255,.6)}
 .float-ai::after{content:'Chat with AI';position:absolute;right:calc(100% + 10px);background:rgba(10,10,15,.95);color:#fff;font-family:var(--fb);font-size:.75rem;padding:.3rem .7rem;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;border:1px solid var(--border)}
 .float-ai:hover::after{opacity:1}
@@ -121,7 +122,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .ai-chat-popup{position:fixed;bottom:5.5rem;right:1.8rem;width:320px;background:rgba(10,10,15,.99);border:1px solid rgba(123,47,255,.3);border-radius:18px;padding:0;z-index:901;box-shadow:0 16px 50px rgba(0,0,0,.6);opacity:0;pointer-events:none;transform:translateY(10px);transition:all .25s;overflow:hidden}
 .ai-chat-popup.open{opacity:1;pointer-events:all;transform:translateY(0)}
 .ai-chat-head{padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(123,47,255,.2),rgba(76,201,240,.1));border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.7rem}
-.ai-chat-head .ai-av{width:32px;height:32px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.ai-chat-head .ai-av{width:32px;height:32px;border-radius:50%;background:#1197C8;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
 .ai-chat-head h4{font-size:.88rem;font-weight:600}
 .ai-chat-head p{font-size:.72rem;color:var(--muted)}
 .ai-chat-close{margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1rem}
@@ -130,7 +131,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .ai-chat-input{display:flex;gap:.5rem;padding:1rem 1.2rem;border-top:1px solid var(--border)}
 .ai-chat-input input{flex:1;padding:.6rem .9rem;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:9px;color:var(--white);font-family:var(--fb);font-size:.82rem;outline:none}
 .ai-chat-input input:focus{border-color:var(--purple)}
-.ai-send{padding:.6rem .9rem;background:var(--grad);border:none;border-radius:9px;color:#fff;font-size:.8rem;cursor:pointer}
+.ai-send{padding:.6rem .9rem;background:#1197C8;border:none;border-radius:9px;color:#fff;font-size:.8rem;cursor:pointer}
 
 /* ══ UTILS ══ */
 .container{max-width:1160px;margin:0 auto;padding:0 5%}
@@ -139,7 +140,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .section-title{font-family:var(--fd);font-size:clamp(1.9rem,3.8vw,3rem);font-weight:700;line-height:1.15;margin-bottom:1.5rem}
 .grad-text{background:var(--grad-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
-.btn-primary{display:inline-flex;align-items:center;gap:.45rem;padding:.82rem 1.7rem;background:var(--grad);border:none;border-radius:10px;color:#fff;font-family:var(--fb);font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .25s}
+.btn-primary{display:inline-flex;align-items:center;gap:.45rem;padding:.82rem 1.7rem;background:#1197C8;border:none;border-radius:10px;color:#fff;font-family:var(--fb);font-size:.9rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all .25s}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(17,151,200,.35)}
 .btn-outline{display:inline-flex;align-items:center;gap:.45rem;padding:.82rem 1.7rem;background:transparent;border:1px solid rgba(255,255,255,.13);border-radius:10px;color:var(--white);font-family:var(--fb);font-size:.9rem;font-weight:500;cursor:pointer;text-decoration:none;transition:all .25s}
 .btn-outline:hover{border-color:var(--purple);background:rgba(123,47,255,.07)}
@@ -154,6 +155,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.33rem .9rem;background:#1197c81b;border:1px solid #1197c879;border-radius:100px;font-family:var(--fm);font-size:.7rem;color:#1197C8;margin-bottom:1.7rem;letter-spacing:.05em}
 .hero-badge::before{content:'●';color:var(--pink);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.hero-title1{font-family:var(--fd);font-size:clamp(2.6rem,6.5vw,5.5rem);font-weight:900;color:var(--pink);line-height:1.05;margin-bottom:1.2rem;letter-spacing:-.02em}
+.hero-title2{font-family:var(--fd);font-size:clamp(2.6rem,6.5vw,5.5rem);font-weight:900;color:var(--blue);line-height:1.05;margin-bottom:1.2rem;letter-spacing:-.02em}
 .hero-title{font-family:var(--fd);font-size:clamp(2.6rem,6.5vw,5.5rem);font-weight:900;line-height:1.05;margin-bottom:1.2rem;letter-spacing:-.02em}
 .hero-sub{font-size:1.05rem;color:var(--muted);max-width:480px;margin-bottom:2rem;line-height:1.75}
 .hero-actions{display:flex;gap:.9rem;flex-wrap:wrap;margin-bottom:3rem}
@@ -285,7 +288,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .feat-list li{display:flex;align-items:flex-start;gap:.55rem;font-size:.81rem;color:#c0bfd0}
 .feat-list li::before{content:'✦';color:var(--pink);font-size:.58rem;margin-top:4px;flex-shrink:0}
 .pc-btn{display:block;width:100%;padding:.82rem;border-radius:9px;text-align:center;font-weight:600;font-size:.85rem;cursor:pointer;transition:all .22s;text-decoration:none;border:none;font-family:var(--fb)}
-.pc-btn-grad{background:var(--grad);color:#fff}
+.pc-btn-grad{background:#1197C8;color:#fff}
 .pc-btn-grad:hover{box-shadow:0 5px 20px rgba(123,47,255,.36);transform:translateY(-1px)}
 .pc-btn-out{background:transparent;border:1px solid rgba(255,255,255,.13);color:var(--white)}
 .pc-btn-out:hover{border-color:var(--purple);background:rgba(123,47,255,.07)}
@@ -306,14 +309,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
    <img src="images/project-name.jpg" alt="Project Name" class="port-img-real">
    CSS: .port-img-real{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
 */
-.port-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.port-img{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:2.7rem;color:rgba(255,255,255,.06);position:relative;transition:transform .5s}
-.port-card:hover .port-img{transform:scale(1.04)}
+.port-link{text-decoration:none;color:inherit;display:block}
+.port-image{width:100%;height:100%;object-fit:cover;display:block}
+.port-img{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;font-size:2.7rem;color:rgba(255,255,255,.06);position:relative;overflow:hidden;transition:transform .5s}
+.port-card:hover .port-link{text-decoration:none;color:inherit;display:block}
+.port-image{width:100%;height:100%;object-fit:cover;display:block}
+.port-img{transform:scale(1.04)}
 .port-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(221,66,144,.7),rgba(17,151,200,.7));display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;color:#fff;font-weight:600;font-size:.88rem}
 .port-card:hover .port-ov{opacity:1}
 .port-info{padding:1.4rem 1.4rem 1.6rem}
@@ -378,7 +379,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .fg select option{background:var(--card)}
 .fg textarea{resize:vertical;min-height:95px}
 .f-row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
-.f-submit{width:100%;padding:.88rem;background:var(--grad);border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .22s;margin-top:.35rem}
+.f-submit{width:100%;padding:.88rem;background:#1197C8;border:none;border-radius:9px;color:#fff;font-family:var(--fb);font-size:.9rem;font-weight:600;cursor:pointer;transition:all .22s;margin-top:.35rem}
 .f-submit:hover{transform:translateY(-2px);box-shadow:0 7px 24px rgba(123,47,255,.38)}
 .f-success{display:none;text-align:center;padding:2.5rem 1rem;color:var(--blue);font-family:var(--fm);font-size:.85rem;line-height:2}
 
@@ -436,8 +437,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 .marquee-wrap{overflow:hidden;padding:.9rem 0;background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .marquee-track{display:flex;width:max-content;animation:marquee 28s linear infinite}
 .marquee-track:hover{animation-play-state:paused}
-.marquee-item{display:flex;align-items:center;gap:.6rem;padding:0 2.2rem;white-space:nowrap;font-family:var(--fm);font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pink)}
-.marquee-dot{color:var(--blue);font-size:.8rem}
+.marquee-item{display:flex;align-items:center;gap:.6rem;padding:0 2.2rem;white-space:nowrap;font-family:var(--fm);font-size:.92rem;letter-spacing:.1em;text-transform:uppercase;color:#DD4290}
+.marquee-dot{color:#1197C8;font-size:.8rem}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* ══ GRADIENT GLOW HOVER ══ */
@@ -459,6 +460,173 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 /* ══ RESPONSIVE STACK ══ */
 @media(max-width:960px){.stack-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:600px){.stack-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ══ KMV (Key Services / Mission / Vision) ══ */
+.kmv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin-top:3rem}
+.kmv-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2.2rem;transition:all .3s}
+.kmv-icon-wrap{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(221, 66, 144, 0.696),rgba(17,151,200,.15));border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;margin-bottom:1.3rem;overflow:hidden}
+.kmv-icon-img{width:28px;height:28px;object-fit:contain}
+.kmv-icon-fallback{font-size:1.4rem;display:none}
+.kmv-card h3{font-family:var(--fm);font-size:.95rem;font-weight:700;margin-bottom:1.1rem;color:var(--white)}
+.kmv-list{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.kmv-list li{display:flex;align-items:flex-start;gap:.65rem;font-size:.82rem;color:var(--muted);line-height:1.6}
+.kmv-dot{width:6px;height:6px;border-radius:50%;background:var(--grad-text);background:linear-gradient(135deg,var(--pink),var(--blue));flex-shrink:0;margin-top:.45rem;display:block}
+@media(max-width:860px){.kmv-grid{grid-template-columns:1fr}}
+
+/* ══ WHAT WE DO (glassmorphism) ══ */
+.wwd-section{padding:7rem 0;background:var(--dark)}
+.section-sub{color:var(--muted);font-size:.9rem;line-height:1.75}
+.wwd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem}
+.wwd-card{background:rgba(255,255,255,.025);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden;cursor:pointer;transition:all .3s}
+.wwd-card:hover{border-color:rgba(17,151,200,.35);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.35),0 0 28px rgba(17,151,200,.15)}
+.wwd-img-wrap{aspect-ratio:16/9;overflow:hidden;position:relative}
+.wwd-img-ph{width:100%;height:100%;background:linear-gradient(135deg,rgba(221,66,144,.12),rgba(93,51,117,.15),rgba(17,151,200,.12));display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.5rem}
+.wwd-img-ph img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.wwd-img-fb{font-size:2.4rem;display:none}
+.wwd-img-real{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.wwd-card:hover .wwd-img-real,.wwd-card:hover .wwd-img-ph img{transform:scale(1.04)}
+.wwd-body{padding:1.5rem 1.5rem 1.8rem}
+.wwd-tag{display:inline-block;padding:.18rem .65rem;background:rgba(17,151,200,.1);border:1px solid rgba(17,151,200,.2);border-radius:100px;font-size:.67rem;color:var(--blue);font-family:var(--fm);letter-spacing:.06em;margin-bottom:.65rem}
+.wwd-body h3{font-size:.95rem;font-weight:600;margin-bottom:.45rem;color:var(--white)}
+.wwd-body p{font-size:.81rem;color:var(--muted);line-height:1.65}
+.wwd-link{color:var(--pink);font-size:.8rem;font-family:var(--fm);font-weight:600;margin-top:.9rem;letter-spacing:.02em}
+@media(max-width:960px){.wwd-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.wwd-grid{grid-template-columns:1fr}}
+
+/* ══ HOMEPAGE PORTFOLIO PREVIEW ══ */
+.hport-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.hport-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s}
+.hport-img-wrap{aspect-ratio:9/14;overflow:hidden;position:relative}
+.hport-img-ph{width:100%;height:100%;background:linear-gradient(180deg,rgba(221,66,144,.12),rgba(17,151,200,.12));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;position:absolute;inset:0}
+.hport-img-real{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:object-position 4s ease}
+.hport-card.scrolling .hport-img-real{object-position:bottom}
+.hport-scroll-hint{position:absolute;bottom:.7rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.65);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:.22rem .75rem;font-size:.65rem;color:rgba(255,255,255,.7);white-space:nowrap;font-family:var(--fm);opacity:0;transition:opacity .3s}
+.hport-card:hover .hport-scroll-hint{opacity:1}
+.hport-info{padding:1rem 1.2rem 1.3rem}
+.hport-info h3{font-size:.88rem;font-weight:600;margin-top:.3rem;color:var(--white)}
+@media(max-width:860px){.hport-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.hport-grid{grid-template-columns:1fr 1fr}}
+
+/* ══ HOMEPAGE BLOG PREVIEW ══ */
+.hblog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3rem}
+@media(max-width:860px){.hblog-grid{grid-template-columns:1fr}}
+
+
+/* ══ LIGHT MODE ══ */
+body.light-mode{
+  --black:#f5f5fa;--dark:#eeeef5;--card:#ffffff;--border:rgba(0,0,0,0.09);
+  --white:#0d0d12;--muted:#5a5a78;
+}
+body.light-mode nav{background:rgba(245,245,250,.96)}
+body.light-mode .mob-drawer{background:rgba(245,245,250,.99)}
+body.light-mode .acct-popup,
+body.light-mode .dropdown,
+body.light-mode .ai-chat-popup{background:rgba(255,255,255,.99);border-color:rgba(0,0,0,.1)}
+body.light-mode .am-input{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.1);color:#0d0d12}
+body.light-mode .am-input::placeholder{color:#8888a0}
+body.light-mode .fg input,
+body.light-mode .fg select,
+body.light-mode .fg textarea{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.1);color:#0d0d12}
+body.light-mode .fg input::placeholder,
+body.light-mode .fg textarea::placeholder{color:#8888a0}
+body.light-mode .fg select option{background:#fff;color:#0d0d12}
+body.light-mode .hero{background:var(--black)}
+body.light-mode .orb{opacity:.07}
+body.light-mode .stat-label{color:var(--muted)}
+body.light-mode .skill-tag{background:rgba(0,0,0,.05);border-color:rgba(0,0,0,.1);color:var(--muted)}
+body.light-mode ::-webkit-scrollbar-thumb{background:var(--purple)}
+body.light-mode .footer-col ul li a{color:#5a5a78}
+
+/* Theme toggle button */
+.theme-toggle{width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.05);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;padding:0;flex-shrink:0;overflow:hidden}
+.theme-toggle:hover{border-color:var(--blue);background:rgba(17,151,200,.1)}
+.theme-toggle img{width:18px;height:18px;object-fit:contain;display:block}
+.theme-icon-dark{display:block}
+.theme-icon-light{display:none}
+body.light-mode .theme-icon-dark{display:none}
+body.light-mode .theme-icon-light{display:block}
+
+
+/* Hero layout with image */
+.hero{display:flex;align-items:center;justify-content:space-between;gap:3rem}
+.hero-img-col{position:relative;z-index:1;flex-shrink:0;width:400px}
+.hero-img-box{width:100%;aspect-ratio:4/5;border-radius:24px;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,rgba(221,66,144,.1),rgba(93,51,117,.15),rgba(17,151,200,.1));
+  border:1px solid rgba(255,255,255,.07)}
+/* Replace placeholder: drop your image as assets/hero-visual.jpg
+   The img tag below will auto-show when the file exists */
+.hero-img-box img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-img-box .himg-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem}
+.himg-ph-icon{font-size:3rem;opacity:.18}
+.himg-ph-txt{font-size:.7rem;font-family:var(--fm);color:var(--muted);letter-spacing:.1em;text-align:center;padding:0 2rem;opacity:.6}
+.hero-badge-float{position:absolute;bottom:1.4rem;left:-1.4rem;background:var(--card);border:1px solid var(--border);border-radius:13px;padding:.75rem 1.1rem;backdrop-filter:blur(12px);display:flex;align-items:center;gap:.65rem;box-shadow:0 8px 30px rgba(0,0,0,.35);z-index:2}
+.hero-badge-float2{position:absolute;top:1.4rem;right:-.9rem;background:var(--card);border:1px solid rgba(221,66,144,.22);border-radius:12px;padding:.65rem .95rem;backdrop-filter:blur(12px);font-size:.72rem;font-family:var(--fm);z-index:2;text-align:center}
+@media(max-width:960px){.hero-img-col{display:none}.hero{display:block}}
+
+
+/* ══ KMV (Key Services / Mission / Vision) ══ */
+.kmv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin-top:3rem}
+.kmv-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2.2rem;transition:all .3s;position:relative;overflow:hidden}
+.kmv-card::after{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .45s;pointer-events:none}
+.kmv-card:hover{border-color:rgba(17,151,200,.4);transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.25),0 0 22px rgba(17,151,200,.15)}
+.kmv-card:hover::after{opacity:.07;animation:gradWave 1.8s ease infinite}
+.kmv-card>*{position:relative;z-index:1}
+.kmv-icon-wrap{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(221,66,144,.13),rgba(17,151,200,.13));border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;margin-bottom:1.3rem;overflow:hidden;flex-shrink:0}
+.kmv-icon-wrap img{width:26px;height:26px;object-fit:contain}
+.kmv-icon-fb{font-size:1.3rem;display:none}
+.kmv-card h3{font-family:var(--fm);font-size:.88rem;font-weight:700;margin-bottom:1rem;color:var(--white);letter-spacing:.04em;text-transform:uppercase}
+.kmv-list{list-style:none;display:flex;flex-direction:column;gap:.72rem}
+.kmv-list li{display:flex;align-items:flex-start;gap:.6rem;font-size:.82rem;color:var(--muted);line-height:1.65}
+.kmv-dot{width:5px;height:5px;border-radius:50%;background:var(--pink);flex-shrink:0;margin-top:.48rem;display:block}
+@media(max-width:860px){.kmv-grid{grid-template-columns:1fr}}
+
+
+/* ══ WHAT WE DO ══ */
+.wwd-section{padding:7rem 0;background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.section-sub{color:var(--muted);font-size:.9rem;line-height:1.75}
+.wwd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem;margin-top:3.5rem}
+.wwd-card{background:rgba(255,255,255,.025);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.07);border-radius:18px;overflow:hidden;cursor:pointer;transition:all .3s;position:relative}
+.wwd-card::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(221,66,144,.15),rgba(93,51,117,.15),rgba(17,151,200,.15),transparent);background-size:200% 100%;opacity:0;transition:opacity .35s;z-index:0;pointer-events:none}
+.wwd-card:hover{border-color:rgba(17,151,200,.38);transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.3),0 0 28px rgba(17,151,200,.14)}
+.wwd-card:hover::before{opacity:1;animation:gradWave 1.8s ease infinite}
+.wwd-img-wrap{aspect-ratio:16/9;overflow:hidden;position:relative;z-index:1}
+/* Replace placeholder: add real service images in assets/ folder
+   Format: .wwd-img-wrap img (full width, auto height, covers the slot) */
+.wwd-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.wwd-card:hover .wwd-img-wrap img{transform:scale(1.04)}
+.wwd-img-ph{width:100%;height:100%;background:linear-gradient(135deg,rgba(221,66,144,.1),rgba(93,51,117,.12),rgba(17,151,200,.1));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;position:absolute;inset:0}
+.wwd-img-ph-icon{font-size:2.2rem;opacity:.22}
+.wwd-img-ph-txt{font-size:.68rem;font-family:var(--fm);color:var(--muted);opacity:.5;text-align:center;padding:0 1rem}
+.wwd-body{padding:1.4rem 1.5rem 1.8rem;position:relative;z-index:1}
+.wwd-tag{display:inline-block;padding:.18rem .65rem;background:rgba(17,151,200,.1);border:1px solid rgba(17,151,200,.2);border-radius:100px;font-size:.66rem;color:var(--blue);font-family:var(--fm);letter-spacing:.06em;margin-bottom:.65rem}
+.wwd-body h3{font-size:.95rem;font-weight:600;margin-bottom:.45rem;color:var(--white)}
+.wwd-body p{font-size:.81rem;color:var(--muted);line-height:1.65}
+.wwd-link{color:var(--pink);font-size:.79rem;font-weight:600;margin-top:.85rem;letter-spacing:.02em;font-family:var(--fm)}
+body.light-mode .wwd-card{background:rgba(0,0,0,.025)}
+@media(max-width:960px){.wwd-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.wwd-grid{grid-template-columns:1fr}}
+
+
+/* ══ HOMEPAGE PORTFOLIO PREVIEW ══ */
+.hport-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3.5rem}
+.hport-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;cursor:pointer;transition:all .3s;position:relative}
+.hport-card:hover{border-color:rgba(17,151,200,.4);transform:translateY(-5px);box-shadow:0 16px 36px rgba(0,0,0,.3),0 0 24px rgba(17,151,200,.15)}
+.hport-img-wrap{aspect-ratio:9/14;overflow:hidden;position:relative}
+.hport-img-real{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:object-position 3.5s ease}
+.hport-card.scrolling .hport-img-real{object-position:bottom}
+.hport-img-ph{width:100%;height:100%;background:linear-gradient(180deg,rgba(221,66,144,.1),rgba(17,151,200,.1));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;position:absolute;inset:0}
+.hport-scroll-badge{position:absolute;bottom:.7rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.65);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);border-radius:100px;padding:.22rem .8rem;font-size:.63rem;color:rgba(255,255,255,.7);white-space:nowrap;font-family:var(--fm);opacity:0;transition:opacity .25s;pointer-events:none}
+.hport-card:hover .hport-scroll-badge{opacity:1}
+.hport-info{padding:1rem 1.2rem 1.3rem}
+.hport-info h3{font-size:.88rem;font-weight:600;margin-top:.3rem}
+@media(max-width:860px){.hport-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.hport-grid{grid-template-columns:1fr 1fr;gap:1rem}}
+
+
+/* ══ HOMEPAGE BLOG PREVIEW ══ */
+.hblog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;margin-top:3.5rem}
+@media(max-width:860px){.hblog-grid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -475,7 +643,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
     <div class="nav-logo" onclick="go('home')">
       <img src="assets/logo.png" alt="Agency Logo"
            onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-      <span class="nav-logo-text" style="display:block;color:#f0eff5;-webkit-text-fill-color:#f0eff5">Lumiee Web Studio</span>
+      <span class="nav-logo-text" style="display:block;color:#f0eff5;-webkit-text-fill-color:var(--pink)">Lumiee Web Studio</span>
     </div>
 
     <ul class="nav-menu">
@@ -485,8 +653,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
         <button class="nav-link">Our Services <span class="nav-arr">▾</span></button>
         <div class="dropdown">
           <a class="dd-link" onclick="go('web-dev')"><span class="dd-icon">💻</span><div><div class="dd-title">Web Development</div><div class="dd-sub">Corporate, Business & Custom</div></div></a>
-          <a class="dd-link" onclick="go('product-design')"><span class="dd-icon">🎨</span><div><div class="dd-title">Product Design</div><div class="dd-sub">UI/UX & Brand Identity</div></div></a>
-          <a class="dd-link" onclick="go('seo')"><span class="dd-icon">🔍</span><div><div class="dd-title">SEO</div><div class="dd-sub">Get found on Google</div></div></a>
+          <a class="dd-link" onclick="go('product-design')"><span class="dd-icon"><img src="assets/icon-design.png" style="width:18px;height:18px;object-fit:contain" onerror="this.style.display='none'"></span><div><div class="dd-title">Product Design</div><div class="dd-sub">UI/UX & Brand Identity</div></div></a>
+          <a class="dd-link" onclick="go('seo')"><span class="dd-icon"><img src="assets/icon-seo.png" style="width:18px;height:18px;object-fit:contain" onerror="this.style.display='none'"></span><div><div class="dd-title">SEO</div><div class="dd-sub">Get found on Google</div></div></a>
         </div>
       </li>
       <li class="nav-item"><button class="nav-link" data-page="portfolio" onclick="go('portfolio')">Portfolio</button></li>
@@ -501,7 +669,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
     </ul>
 
     <div class="nav-right">
-      <div class="nav-account" onclick="toggleAcct()" title="Login / Sign Up">👤</div>
+      <!-- Theme toggle: swap src with your own sun/moon icons -->
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">
+        <img class="theme-icon-light" src="assets/light.png" alt="Light mode"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="theme-icon-light" style="display:none"><img src="assets/light.png" style="width:18px;height:18px;object-fit:contain" onerror="this.style.display='none'"></span>
+        <img class="theme-icon-dark" src="assets/dark.png" alt="Dark mode"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <span class="theme-icon-dark" style="display:none"><img src="assets/dark.png" style="width:18px;height:18px;object-fit:contain" onerror="this.style.display='none'"></span>
+      </button>
+      <!-- Account: swap emoji with your own icon image -->
+      <div class="nav-account" onclick="toggleAcct()" title="Login / Sign Up">
+        <img src="assets/account.png" alt="Account"
+             style="width:18px;height:18px;object-fit:contain"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+        <span style="display:none"><img src="assets/-account.png" style="width:18px;height:18px;object-fit:contain" onerror="this.style.display='none'"></span>
+      </div>
       <button class="nav-cta" onclick="go('consultation')">Book a Call →</button>
       <button class="hamburger" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
     </div>
@@ -519,7 +702,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
     <input class="am-input" type="password" placeholder="Password">
     <button class="am-btn">Login →</button>
     <div class="am-or">or</div>
-    <button class="am-wa"><img src="assets/whatsapp.png" class="am-wa-img">Continue with WhatsApp</button>
+    <button class="am-wa"><img src="assets/whatsapp.png" style="width:16px;height:16px;object-fit:contain;vertical-align:middle;margin-right:6px" onerror="this.style.display='none'">Continue with WhatsApp</button>
   </div>
   <div class="am-form" id="signupForm" style="display:none">
     <input class="am-input" type="text" placeholder="Full name">
@@ -536,8 +719,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
   <div class="mob-link" onclick="toggleMobSub('ms1')">Our Services <span class="mob-arr">▾</span></div>
   <div class="mob-sub" id="ms1">
     <div class="mob-sub-link" onclick="go('web-dev');closeMob()">💻 Web Development</div>
-    <div class="mob-sub-link" onclick="go('product-design');closeMob()">🎨 Product Design</div>
-    <div class="mob-sub-link" onclick="go('seo');closeMob()">🔍 SEO</div>
+    <div class="mob-sub-link" onclick="go('product-design');closeMob()"><img src="assets/icon-design.png" style="width:16px;height:16px;object-fit:contain;margin-right:6px;vertical-align:middle" onerror="this.style.display='none'"> Product Design</div>
+    <div class="mob-sub-link" onclick="go('seo');closeMob()"><img src="assets/icon-seo.png" style="width:16px;height:16px;object-fit:contain;margin-right:6px;vertical-align:middle" onerror="this.style.display='none'"> SEO</div>
   </div>
   <div class="mob-link" onclick="go('portfolio');closeMob()">Portfolio</div>
   <div class="mob-link" onclick="toggleMobSub('ms2')">Resources <span class="mob-arr">▾</span></div>
@@ -564,13 +747,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 
 <!-- AI Chat — bottom right (placeholder, wire up your AI later) -->
 <button class="float-ai" onclick="toggleAIChat()" aria-label="Chat with AI Assistant">
-  🤖
+  <img src="assets/ai-icon.png" alt="AI" style="width:26px;height:26px;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">🤖</span>
 </button>
 
 <!-- AI Chat popup -->
 <div class="ai-chat-popup" id="aiChatPopup">
   <div class="ai-chat-head">
-    <div class="ai-av">🤖</div>
+    <div class="ai-av"><img src="assets/ai-icon.png" alt="" style="width:22px;height:22px;object-fit:contain" onerror="this.style.display='none'">🤖</div>
     <div>
       <h4>AI Assistant</h4>
       <p>Ask me anything — I'm here to help</p>
@@ -595,12 +778,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
 ══════════════════════════════════ -->
 <div id="home" class="page active">
 
-  <section class="hero">
+  <section class="hero" style="display:flex;align-items:center;justify-content:space-between;gap:3rem">
     <div class="orb" style="width:560px;height:560px;top:-80px;right:-180px;background:rgba(123,47,255,.16)"></div>
     <div class="orb" style="width:360px;height:360px;bottom:0;left:-80px;background:rgba(247,37,133,.13)"></div>
     <div class="hero-content">
       <div class="hero-badge">Now accepting new projects</div>
-      <h1 class="hero-title">We Build Websites<br><span class="grad-text">That Drive Results.</span></h1>
+      <h1 class="hero-title">We Build Websites<br><span class="hero-title1">That Drive </span><span class="hero-title2">Results.</span></h1>
       <p class="hero-sub">A web development & product design agency delivering high-performance corporate, business and custom websites — built to convert visitors into paying clients.</p>
       <div class="hero-actions">
         <a class="btn-primary" onclick="go('portfolio')">View Our Work ↗</a>
@@ -612,19 +795,145 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
         <div><div class="stat-num">100%</div><div class="stat-label">Client Satisfaction</div></div>
       </div>
     </div>
+
+    <!-- HERO IMAGE (right side)
+         To use a real image, replace div.hero-img-placeholder with:
+         <img src="images/hero-visual.jpg" alt="Lumiee Web Studio" class="hero-img-real"> -->
+    <div class="hero-img-wrap">
+      <div class="hero-img-placeholder">
+        
+      <div class="hero-float-badge">
+        
+        
+      
+
+    <!-- HERO IMAGE — right side
+         Drop your image at assets/hero-visual.jpg (or any path)
+         The placeholder disappears automatically when image loads -->
+    <div class="hero-img-col">
+      <div class="hero-img-box">
+        <img src="assets/hero-visual.jpg" alt="Lumiee Web Studio"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        
+      </div>
+      <div class="hero-badge-float">
+        <div style="width:34px;height:34px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <img src="assets/icon-check.png" alt="" style="width:16px;height:16px;object-fit:contain"
+               onerror="this.textContent='✓';this.style.display='inline'">
+        </div>
+        <div><div style="font-size:.77rem;font-weight:600">50+ Projects</div><div style="font-size:.66rem;color:var(--muted)">Delivered & counting</div></div>
+      </div>
+      <div class="hero-badge-float2">
+        <div style="color:var(--pink);font-weight:700;font-size:.82rem"><img src="assets/icon-star.png" style="width:14px;height:14px;object-fit:contain;vertical-align:middle" onerror="this.style.display='none'"> 5.0</div>
+        <div style="color:var(--muted);margin-top:.12rem">Client Rating</div>
+      </div>
+    </div>
+
     <div class="hero-ring"></div>
   </section>
 
-  <!-- Services strip -->
-  <div class="strip">
+  <!-- What We Do -->
+  <section class="wwd-section">
     <div class="container">
-      <div class="strip-grid">
-        <div class="strip-item" onclick="go('web-dev')"><span class="strip-icon">💻</span><div><h3>Web Development</h3><p>Corporate, Business & Custom builds</p></div></div>
-        <div class="strip-item" onclick="go('product-design')"><span class="strip-icon">🎨</span><div><h3>Product Design</h3><p>UI/UX that delights & converts</p></div></div>
-        <div class="strip-item" onclick="go('seo')"><span class="strip-icon">🔍</span><div><h3>SEO</h3><p>Get found on Google — first page</p></div></div>
+      <p class="section-label" style="text-align:center">What We Do</p>
+      <h2 class="section-title" style="text-align:center">Website Development <span class="grad-text">Services</span></h2>
+      <p class="section-sub" style="text-align:center;max-width:520px;margin:0 auto 3.5rem">From sleek landing pages to full-scale mobile apps — we handle every layer of your digital presence.</p>
+      <div class="wwd-grid">
+
+        <div class="wwd-card glow-hover" onclick="go('web-dev')">
+          <div class="wwd-img-wrap">
+            <!-- Replace with: <img src="images/service-ecommerce.jpg" alt="E-commerce" class="wwd-img-real"> -->
+            <div class="wwd-img-ph">
+              <img src="assets/svc-ecommerce.png" alt="E-commerce Web Design" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="wwd-img-fb">🛒</div>
+            </div>
+          </div>
+          <div class="wwd-body">
+            <div class="wwd-tag">E-commerce</div>
+            <h3>E-commerce Web Design</h3>
+            <p>Online stores that appeal to your audience, showcase your products and drive in sales — built with WooCommerce or custom code.</p>
+            <div class="wwd-link">Learn more →</div>
+          </div>
+        </div>
+
+        <div class="wwd-card glow-hover" onclick="go('web-dev')">
+          <div class="wwd-img-wrap">
+            <div class="wwd-img-ph">
+              <img src="assets/svc-webdev.png" alt="Website Development" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="wwd-img-fb">💻</div>
+            </div>
+          </div>
+          <div class="wwd-body">
+            <div class="wwd-tag">Web Dev</div>
+            <h3>Website Development</h3>
+            <p>Corporate, investment, educational, real estate — fully custom websites built around your business goals and brand identity.</p>
+            <div class="wwd-link">Learn more →</div>
+          </div>
+        </div>
+
+        <div class="wwd-card glow-hover" onclick="go('seo')">
+          <div class="wwd-img-wrap">
+            <div class="wwd-img-ph">
+              <img src="assets/svc-seo.png" alt="SEO" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="wwd-img-fb"><img src="assets/svc-seo.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div>
+            </div>
+          </div>
+          <div class="wwd-body">
+            <div class="wwd-tag">SEO</div>
+            <h3>Search Engine Optimisation</h3>
+            <p>Driving your business to Google's first page is what we do best. Our rich SEO technique will boost your visibility in weeks.</p>
+            <div class="wwd-link">Learn more →</div>
+          </div>
+        </div>
+
+        <div class="wwd-card glow-hover" onclick="go('web-dev')">
+          <div class="wwd-img-wrap">
+            <div class="wwd-img-ph">
+              <img src="assets/svc-mobile.png" alt="Mobile App Development" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="wwd-img-fb"><img src="assets/svc-mobile.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div>
+            </div>
+          </div>
+          <div class="wwd-body">
+            <div class="wwd-tag">Mobile Apps</div>
+            <h3>Mobile App Development</h3>
+            <p>Powerful, user-friendly iOS and Android apps built for your business — from fintech to lifestyle to productivity tools.</p>
+            <div class="wwd-link">Learn more →</div>
+          </div>
+        </div>
+
+        <div class="wwd-card glow-hover" onclick="go('product-design')">
+          <div class="wwd-img-wrap">
+            <div class="wwd-img-ph">
+              <img src="assets/svc-design.png" alt="Product Design" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="wwd-img-fb"><img src="assets/svc-design.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div>
+            </div>
+          </div>
+          <div class="wwd-body">
+            <div class="wwd-tag">Design</div>
+            <h3>Product Design (UI/UX)</h3>
+            <p>Figma-first design that puts your user at the centre. Wireframes, full UI kits, prototypes, and design systems — all pixel-perfect.</p>
+            <div class="wwd-link">Learn more →</div>
+          </div>
+        </div>
+
+        <div class="wwd-card glow-hover" onclick="go('web-dev')">
+          <div class="wwd-img-wrap">
+            <div class="wwd-img-ph">
+              <img src="assets/svc-wordpress.png" alt="WordPress" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="wwd-img-fb">🟦</div>
+            </div>
+          </div>
+          <div class="wwd-body">
+            <div class="wwd-tag">WordPress</div>
+            <h3>WordPress Development</h3>
+            <p>Fast, secure, and easy to manage — WordPress sites built cleanly with custom themes, plugins and full training on handover.</p>
+            <div class="wwd-link">Learn more →</div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
+  </section>
 
   <!-- About the company -->
   <section class="home-about">
@@ -658,6 +967,66 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
     </div>
   </section>
 
+  
+
+
+  <!-- ── Key Services / Mission / Vision ── -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="kmv-grid">
+
+        <div class="kmv-card">
+          <div class="kmv-icon-wrap">
+            <!-- Replace with your icon: assets/icon-services.png -->
+            <img src="assets/services.png" alt="Key Services"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span class="kmv-icon-fb"><img src="assets/mission.png" style="width:28px;height:28px;object-fit:contain" onerror="this.style.display='none'"></span>
+          </div>
+          <h3>Our Key Services</h3>
+          <ul class="kmv-list">
+            <li><span class="kmv-dot"></span>Web Development — custom websites built around your business goals</li>
+            <li><span class="kmv-dot"></span>E-commerce — online stores that showcase your products and drive real sales</li>
+            <li><span class="kmv-dot"></span>SEO — first-page Google rankings through proven, ethical techniques</li>
+            <li><span class="kmv-dot"></span>Mobile App Development — powerful iOS & Android apps for your business</li>
+            <li><span class="kmv-dot"></span>Product Design — UI/UX that guides users and converts them into clients</li>
+          </ul>
+        </div>
+
+        <div class="kmv-card">
+          <div class="kmv-icon-wrap">
+            <!-- Replace with your icon: assets/icon-mission.png -->
+            <img src="assets/mission.png" alt="Mission"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span class="kmv-icon-fb"><img src="assets/vision.png" style="width:28px;height:28px;object-fit:contain" onerror="this.style.display='none'"></span>
+          </div>
+          <h3>Our Mission</h3>
+          <ul class="kmv-list">
+            <li><span class="kmv-dot"></span>To help businesses build their brand through professional websites that drive in leads and revenue.</li>
+            <li><span class="kmv-dot"></span>To create web and mobile solutions that perfectly align with each client's specific needs, budget and goals.</li>
+            <li><span class="kmv-dot"></span>To deliver clean, fast and accessible digital experiences — no bloat, no shortcuts.</li>
+          </ul>
+        </div>
+
+        <div class="kmv-card">
+          <div class="kmv-icon-wrap">
+            <!-- Replace with your icon: assets/icon-vision.png -->
+            <img src="assets/vision.png" alt="Vision"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+            <span class="kmv-icon-fb">🌍</span>
+          </div>
+          <h3>Our Vision</h3>
+          <ul class="kmv-list">
+            <li><span class="kmv-dot"></span>To become the go-to web studio in Nigeria known for delivering exceptional, results-driven digital solutions.</li>
+            <li><span class="kmv-dot"></span>To empower businesses across Africa with premium web and mobile products that compete on a global stage.</li>
+            <li><span class="kmv-dot"></span>To raise the standard of what Nigerian digital agencies can achieve — and prove it project by project.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span class="marquee-item">Top-Rated Web Studio<span class="marquee-dot">✦</span></span>
@@ -683,18 +1052,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       <p class="section-label" style="text-align:center">Our Tech Stack</p>
       <h2 class="section-title" style="text-align:center">Technologies We Work With</h2>
       <div class="stack-grid">
-        <div class="stack-card"><div class="s-icon">⚛️</div><div class="s-name">React</div></div>
-        <div class="stack-card"><div class="s-icon">🌐</div><div class="s-name">HTML5</div></div>
-        <div class="stack-card"><div class="s-icon">🎨</div><div class="s-name">CSS3</div></div>
-        <div class="stack-card"><div class="s-icon">☕</div><div class="s-name">JavaScript</div></div>
-        <div class="stack-card"><div class="s-icon">🟦</div><div class="s-name">WordPress</div></div>
-        <div class="stack-card"><div class="s-icon">🖌️</div><div class="s-name">Figma</div></div>
-        <div class="stack-card"><div class="s-icon">🐍</div><div class="s-name">Node.js</div></div>
-        <div class="stack-card"><div class="s-icon">🗄️</div><div class="s-name">MySQL</div></div>
-        <div class="stack-card"><div class="s-icon">🌊</div><div class="s-name">Tailwind</div></div>
-        <div class="stack-card"><div class="s-icon">☁️</div><div class="s-name">Vercel</div></div>
-        <div class="stack-card"><div class="s-icon">🛠️</div><div class="s-name">Git</div></div>
-        <div class="stack-card"><div class="s-icon">🔷</div><div class="s-name">TypeScript</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-react.png" alt="react" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">⚛️</span></div><div class="s-name">React</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-html5.png" alt="html5" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🌐</span></div><div class="s-name">HTML5</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-css3.png" alt="css3" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none"><img src="assets/blog3.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></span></div><div class="s-name">CSS3</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-javascript.png" alt="javascript" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">☕</span></div><div class="s-name">JavaScript</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-wordpress.png" alt="wordpress" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🟦</span></div><div class="s-name">WordPress</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-figma.png" alt="figma" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🖌️</span></div><div class="s-name">Figma</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-nodejs.png" alt="nodejs" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🐍</span></div><div class="s-name">Node.js</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-mysql.png" alt="mysql" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🗄️</span></div><div class="s-name">MySQL</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-tailwind.png" alt="tailwind" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🌊</span></div><div class="s-name">Tailwind</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-vercel.png" alt="vercel" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">☁️</span></div><div class="s-name">Vercel</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-git.png" alt="git" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🛠️</span></div><div class="s-name">Git</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-typescript.png" alt="typescript" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🔷</span></div><div class="s-name">TypeScript</div></div>
       </div>
     </div>
   </section>
@@ -705,10 +1074,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       <p class="section-label">How We Work</p>
       <h2 class="section-title">Our Process</h2>
       <div class="process-grid">
-        <div class="ps"><div class="ps-num">01</div><div class="ps-icon">💬</div><h3>Discovery</h3><p>We start by understanding your business goals, target audience and vision — asking the right questions upfront.</p></div>
-        <div class="ps"><div class="ps-num">02</div><div class="ps-icon">🎨</div><h3>Design</h3><p>Wireframes and visual mockups are created and approved before any code is written.</p></div>
-        <div class="ps"><div class="ps-num">03</div><div class="ps-icon">⚙️</div><h3>Development</h3><p>Clean, fast, responsive code — built with performance and SEO baked in from day one.</p></div>
-        <div class="ps"><div class="ps-num">04</div><div class="ps-icon">🚀</div><h3>Launch</h3><p>Testing, deployment, and handover — with post-launch support to make sure everything runs perfectly.</p></div>
+        <div class="ps"><div class="ps-num">01</div><div class="ps-icon"><img src="assets/icon-step-💬.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span style="display:none">💬</span></div><h3>Discovery</h3><p>We start by understanding your business goals, target audience and vision — asking the right questions upfront.</p></div>
+        <div class="ps"><div class="ps-num">02</div><div class="ps-icon"><img src="assets/icon-step-🎨.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span style="display:none"><img src="assets/blog3.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></span></div><h3>Design</h3><p>Wireframes and visual mockups are created and approved before any code is written.</p></div>
+        <div class="ps"><div class="ps-num">03</div><div class="ps-icon"><img src="assets/icon-step-⚙️.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span style="display:none">⚙️</span></div><h3>Development</h3><p>Clean, fast, responsive code — built with performance and SEO baked in from day one.</p></div>
+        <div class="ps"><div class="ps-num">04</div><div class="ps-icon"><img src="assets/icon-step-🚀.png" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span style="display:none">🚀</span></div><h3>Launch</h3><p>Testing, deployment, and handover — with post-launch support to make sure everything runs perfectly.</p></div>
       </div>
     </div>
   </section>
@@ -731,6 +1100,142 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
     <span class="marquee-item">From Lagos to the World<span class="marquee-dot">✦</span></span>
   </div>
 </div>
+  <!-- ── Homepage Portfolio Preview ── -->
+  <section class="section">
+    <div class="container">
+      <p class="section-label" style="text-align:center">Some Examples of Our Works</p>
+      <h2 class="section-title" style="text-align:center">Our <span class="grad-text">Portfolio</span></h2>
+      <p style="text-align:center;color:var(--muted);font-size:.9rem;max-width:480px;margin:0 auto">We've poured our hearts into every project. Click any card to scroll through the full page preview.</p>
+      <div class="hport-grid">
+
+        <div class="hport-card" onclick="scrollPortPreview(this)">
+          <div class="hport-img-wrap">
+            <!-- Swap src with a tall screenshot of the website (portrait crop works best) -->
+            <img src="assets/panicalert.png" alt="Panic Alert" class="hport-img-real"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="hport-img-ph">
+              <div style="font-size:2rem;opacity:.2">🖥️</div>
+              <div style="font-size:.68rem;color:var(--muted);text-align:center;padding:0 1rem">assets/panicalert.png</div>
+            </div>
+            <div class="hport-scroll-badge">Click to scroll ↕</div>
+          </div>
+          <div class="hport-info">
+            <span class="port-tag">Corporate</span>
+            <h3>Panic Alert</h3>
+          </div>
+        </div>
+
+        <div class="hport-card" onclick="scrollPortPreview(this)">
+          <div class="hport-img-wrap">
+            <img src="assets/appfocus.png" alt="AppFocus Cooperative" class="hport-img-real"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="hport-img-ph">
+              <div style="opacity:.2"><img src="assets/lumispend.png" style="width:40px;height:40px;object-fit:contain" onerror="this.style.display='none'"></div>
+              <div style="font-size:.68rem;color:var(--muted);text-align:center;padding:0 1rem">assets/appfocus.png</div>
+            </div>
+            <div class="hport-scroll-badge">Click to scroll ↕</div>
+          </div>
+          <div class="hport-info">
+            <span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span>
+            <h3>AppFocus Cooperative</h3>
+          </div>
+        </div>
+
+        <div class="hport-card" onclick="scrollPortPreview(this)">
+          <div class="hport-img-wrap">
+            <img src="assets/kolisa.png" alt="Kolisa MFB" class="hport-img-real"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="hport-img-ph">
+              <div style="font-size:2rem;opacity:.2">🏦</div>
+              <div style="font-size:.68rem;color:var(--muted);text-align:center;padding:0 1rem">assets/kolisa.png</div>
+            </div>
+            <div class="hport-scroll-badge">Click to scroll ↕</div>
+          </div>
+          <div class="hport-info">
+            <span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span>
+            <h3>Kolisa Microfinance</h3>
+          </div>
+        </div>
+
+        <div class="hport-card" onclick="scrollPortPreview(this)">
+          <div class="hport-img-wrap">
+            <img src="assets/lumispend.png" alt="LumiSpend" class="hport-img-real"
+                 onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="hport-img-ph">
+              <div style="font-size:2rem;opacity:.2">💸</div>
+              <div style="font-size:.68rem;color:var(--muted);text-align:center;padding:0 1rem">assets/lumispend.png</div>
+            </div>
+            <div class="hport-scroll-badge">Click to scroll ↕</div>
+          </div>
+          <div class="hport-info">
+            <span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Product Design</span>
+            <h3>LumiSpend App</h3>
+          </div>
+        </div>
+
+      </div>
+      <div style="text-align:center;margin-top:3rem">
+        <a class="btn-outline" onclick="go('portfolio')">View All Projects →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── Homepage Blog Preview ── -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <p class="section-label" style="text-align:center">From the Blog</p>
+      <h2 class="section-title" style="text-align:center">Latest <span class="grad-text">Articles</span></h2>
+      <div class="hblog-grid">
+
+        <div class="blog-card" onclick="go('blog')">
+          <!-- Replace div.blog-img with your actual blog thumbnail image -->
+          <div class="blog-img" style="background:linear-gradient(135deg,rgba(221,66,144,.22),rgba(93,51,117,.22))">
+            <img src="assets/blog1.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"
+                 onerror="this.style.display='none'">
+          </div>
+          <div class="blog-body">
+            <span class="blog-cat">Web Design</span>
+            <h3>5 Web Design Mistakes That Are Killing Your Conversions</h3>
+            <p>Most businesses lose potential clients in the first 7 seconds. Here's what to fix on your website right now.</p>
+            <div class="blog-meta"><span>Lumiee Web Studio</span><span class="blog-rm">Read More →</span></div>
+          </div>
+        </div>
+
+        <div class="blog-card" onclick="go('blog')">
+          <div class="blog-img" style="background:linear-gradient(135deg,rgba(93,51,117,.22),rgba(17,151,200,.22))">
+            <img src="assets/blog2.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"
+                 onerror="this.style.display='none'">
+          </div>
+          <div class="blog-body">
+            <span class="blog-cat">SEO</span>
+            <h3>How We Ranked a Nigerian Business on Google Page 1 in 6 Weeks</h3>
+            <p>A behind-the-scenes look at the exact SEO strategy we used for a local Lagos business to dominate Google.</p>
+            <div class="blog-meta"><span>Lumiee Web Studio</span><span class="blog-rm">Read More →</span></div>
+          </div>
+        </div>
+
+        <div class="blog-card" onclick="go('blog')">
+          <div class="blog-img" style="background:linear-gradient(135deg,rgba(17,151,200,.22),rgba(221,66,144,.22))">
+            <img src="assets/blog3.jpg" alt="" style="width:100%;height:100%;object-fit:cover;display:block"
+                 onerror="this.style.display='none'">
+          </div>
+          <div class="blog-body">
+            <span class="blog-cat">Mobile Apps</span>
+            <h3>React Native vs Flutter: Which Should You Choose in 2026?</h3>
+            <p>We break down both frameworks from a developer and business perspective so you can make the right call.</p>
+            <div class="blog-meta"><span>Lumiee Web Studio</span><span class="blog-rm">Read More →</span></div>
+          </div>
+        </div>
+
+      </div>
+      <div style="text-align:center;margin-top:3rem">
+        <a class="btn-outline" onclick="go('blog')">View All Articles →</a>
+      </div>
+    </div>
+  </section>
+
+
 
   <!-- FAQ -->
   <section class="section">
@@ -771,8 +1276,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
             <!-- Replace # with your actual social links -->
             <a class="f-social" href="#" target="_blank">𝕏</a>
             <a class="f-social" href="#" target="_blank">in</a>
-            <a class="f-social" href="#" target="_blank">📸</a>
-            <a class="f-social" href="https://wa.me/2348143329373" target="_blank">💬</a>
+            <a class="f-social" href="#" target="_blank"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></a>
+            <a class="f-social" href="https://wa.me/2348143329373" target="_blank"><img src="assets/icon-whatsapp-sm.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'"></a>
           </div>
         </div>
         <div class="footer-col">
@@ -799,7 +1304,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
             <!-- Add your WhatsApp number below -->
             <li><a href="https://wa.me/2348143329373" target="_blank">WhatsApp</a></li>
             <!-- Add your email below -->
-            <li><a href="mailto:hello@lumiewebstudio.com">hello@lumiewebstudio.com</a></li>
+            <li><a href="/cdn-cgi/l/email-protection#620a070e0e0d220e170f0b07150700111617060b0d4c010d0f"><span class="__cf_email__" data-cfemail="92faf7fefefdd2fee7fffbf7e5f7f0e1e6e7f6fbfdbcf1fdff">[email&#160;protected]</span></a></li>
           </ul>
         </div>
       </div>
@@ -856,7 +1361,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
     </div>
   </section>
 
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li><li><a onclick="go('portfolio')">Portfolio</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li><li><a href="mailto:hello@lumiewebstudio.com">Email Us</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></a><a class="f-social" href="https://wa.me/2348143329373"><img src="assets/icon-whatsapp-sm.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'"></a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li><li><a onclick="go('portfolio')">Portfolio</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li><li><a href="/cdn-cgi/l/email-protection#49212c25252609253c24202c3e2c2b3a3d3c2d2026672a2624">Email Us</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
 </div>
 
 <!-- ══════════════════════════════════
@@ -882,7 +1387,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       <div class="cta-banner glow-hover"><h2>Ready to design something <span class="grad-text">great?</span></h2><p>Let's chat about your project.</p><div class="cta-actions"><a class="btn-primary" onclick="go('consultation')">Book a Free Call →</a></div></div>
     </div>
   </section>
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></a><a class="f-social" href="https://wa.me/2348143329373"><img src="assets/icon-whatsapp-sm.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'"></a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
 </div>
 
 <!-- ══════════════════════════════════
@@ -908,7 +1413,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       </div>
     </div>
   </section>
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></a><a class="f-social" href="https://wa.me/2348143329373"><img src="assets/icon-whatsapp-sm.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'"></a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
 </div>
 
 <!-- ══════════════════════════════════
@@ -932,13 +1437,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
   <section class="section" style="padding-top:1rem">
     <div class="container">
       <div class="port-grid" id="portGrid">
-        <!-- PORTFOLIO CARD — to add a real image replace the div.port-img with:
-             <img src="images/project-apex.jpg" alt="Apex Law Partners" class="port-img" style="width:100%;height:auto;object-fit:cover">
-        -->
       <a href="https://panicalertapp.com/" target="_blank" class="port-link">
         <div class="port-card" data-cat="corporate">
           <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
-            <img src="assets/panicalert.png" alt="Appfocus MPCS Website" class="port-image">
+            <img src="assets/panicalert.png" alt="Panic Alert" class="port-image">
             <div class="port-ov">View Website →</div>
           </div>
           <div class="port-info"><span class="port-tag">Corporate</span><h3>Panic Alert</h3><p>Corporate site for a Multi-purpose Cooperate Society.</p></div>
@@ -947,7 +1449,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       <a href="https://appfocusng.com/" target="_blank" class="port-link">
         <div class="port-card" data-cat="business">
           <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
-            <img src="assets/ecommerce.png" alt="Appfocus MPCS Website" class="port-image">
+            <img src="assets/ecommerce.png" alt="Bare Essence" class="port-image">
             <div class="port-ov">View Website →</div>
           </div>
           <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>Bare Essence</h3><p>10-page business website for an environmental consulting company with online booking.</p></div>
@@ -956,7 +1458,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       <a href="https://appfocusng.com/" target="_blank" class="port-link">
         <div class="port-card" data-cat="custom">
           <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
-            <img src="assets/appfocus.png" alt="Appfocus MPCS Website" class="port-image">
+            <img src="assets/appfocus.png" alt="Nova Finance App" class="port-image">
             <div class="port-ov">View Website →</div>
           </div>
           <div class="port-info"><span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span><h3>Nova Finance App</h3><p>Custom fintech landing with animated dashboards and waitlist integration.</p></div>
@@ -965,7 +1467,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       <a href="https://appfocusng.com/" target="_blank" class="port-link">
         <div class="port-card" data-cat="design">
           <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
-            <img src="assets/palgo.png" alt="Appfocus MPCS Website" class="port-image">
+            <img src="assets/palgo.png" alt="Palgo Mobile App" class="port-image">
             <div class="port-ov">View Case Study →</div>
           </div>
           <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Product Design</span><h3>Palgo Mobile App</h3><p>Full UI/UX for a women's health tracking mobile application.</p></div>
@@ -974,44 +1476,45 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       <a href="https://appfocusng.com/" target="_blank" class="port-link">
         <div class="port-card" data-cat="business">
           <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
-            <img src="assets/nexarq.png" alt="Appfocus MPCS Website" class="port-image">
+            <img src="assets/nexarq.png" alt="Nexarq" class="port-image">
             <div class="port-ov">View Website →</div>
           </div>
-          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>Bare Essence</h3><p>10-page business website for an environmental consulting company with online booking.</p></div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>Nexarq Electronics</h3><p>Premium electronics e-commerce demo site with custom Paystack checkout flow.</p></div>
         </div>
       </a>
       <a href="https://kolisamicrofinance.com/" target="_blank" class="port-link">
         <div class="port-card" data-cat="custom">
           <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
-            <img src="assets/kolisa.png" alt="Appfocus MPCS Website" class="port-image">
+            <img src="assets/kolisa.png" alt="Kolisa MFB" class="port-image">
             <div class="port-ov">View Website →</div>
           </div>
-          <div class="port-info"><span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span><h3>Kolisa MFB</h3><p>Custom e-commerce store with bespoke product catalogue and checkout flow.</p></div>
+          <div class="port-info"><span class="port-tag" style="color:#c084fc;background:rgba(123,47,255,.07);border-color:rgba(123,47,255,.16)">Custom</span><h3>Kolisa MFB</h3><p>Custom microfinance bank website with loan calculator and client portal.</p></div>
         </div>
       </a>
       <a href="https://appfocusng.com/" target="_blank" class="port-link">
         <div class="port-card" data-cat="design">
           <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
-            <img src="assets/lumispend.png" alt="lumispend" class="port-image">
+            <img src="assets/lumispend.png" alt="LumiSpend" class="port-image">
             <div class="port-ov">View Case Study →</div>
           </div>
-          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Product Design</span><h3>Lumi Spend Mobile App</h3><p>Full UI/UX for a women's health tracking mobile application.</p></div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Product Design</span><h3>LumiSpend App</h3><p>Full UI/UX for an expense tracker mobile application.</p></div>
         </div>
       </a>
       <a href="https://appfocusng.com/" target="_blank" class="port-link">
         <div class="port-card" data-cat="business">
           <div class="port-img" style="background:linear-gradient(135deg,#1a0a2e,#16213e)">
-            <img src="assets/nexarq.png" alt="Appfocus MPCS Website" class="port-image">
+            <img src="assets/ecommerce.png" alt="Eston Foods" class="port-image">
             <div class="port-ov">View Website →</div>
           </div>
-          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>Eston Foods</h3><p>10-page business website for an environmental consulting company with online booking.</p></div>
+          <div class="port-info"><span class="port-tag" style="color:var(--blue);background:rgba(76,201,240,.07);border-color:rgba(76,201,240,.16)">Business</span><h3>Eston Foods</h3><p>Nigerian food e-commerce site with premium aesthetics and real imagery.</p></div>
         </div>
       </a>
+      
       </div>
       <div class="cta-banner glow-hover" style="margin-bottom:4rem"><h2>Want your project <span class="grad-text">featured here?</span></h2><p>Let's build something worth showing off.</p><div class="cta-actions"><a class="btn-primary" onclick="go('consultation')">Start a Project →</a></div></div>
     </div>
   </section>
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></a><a class="f-social" href="https://wa.me/2348143329373"><img src="assets/icon-whatsapp-sm.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'"></a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
 </div>
 
 <!-- ══════════════════════════════════
@@ -1032,16 +1535,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
         <!-- BLOG CARD — to add a real image replace div.blog-img with:
              <img src="images/blog-post-1.jpg" alt="Post Title" class="blog-img" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block">
         -->
-        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a0a2e,#0d1b2a)">📱</div><div class="blog-body"><span class="blog-cat">Web Design</span><h3>Why Your Business Needs a Professional Website in 2026</h3><p>Still running your business off a WhatsApp link? Here's why a real website changes everything for your credibility and sales.</p><div class="blog-meta"><span>Jan 10, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
-        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#0a1a0d,#0d2a1a)">🔍</div><div class="blog-body"><span class="blog-cat">SEO</span><h3>5 SEO Mistakes Nigerian Businesses Keep Making</h3><p>From ignoring Google My Business to keyword stuffing — these errors are costing businesses thousands in lost traffic.</p><div class="blog-meta"><span>Jan 22, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
-        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#2d0a1e,#1a0038)">🎨</div><div class="blog-body"><span class="blog-cat">Design</span><h3>What Makes a Great Website Design? (2026 Edition)</h3><p>Speed, simplicity and mobile-first thinking. What separates a good site from a forgettable one.</p><div class="blog-meta"><span>Feb 3, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
-        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a1200,#2f2200)">💰</div><div class="blog-body"><span class="blog-cat">Business</span><h3>How Much Does a Website Really Cost in Nigeria?</h3><p>A transparent breakdown of web development costs — what drives prices up and what's actually worth paying for.</p><div class="blog-meta"><span>Feb 10, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
-        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#001a2d,#002f47)">⚡</div><div class="blog-body"><span class="blog-cat">Development</span><h3>WordPress vs Custom Builds: Which is Right for You?</h3><p>Both have their place. How to decide which approach makes sense for your specific business and budget.</p><div class="blog-meta"><span>Feb 17, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
-        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#0d1a0d,#1a2f1a)">📊</div><div class="blog-body"><span class="blog-cat">Business</span><h3>How to Brief a Web Developer (And Get What You Want)</h3><p>The most common reason projects go wrong is a bad brief. Here's how to give your developer everything they need.</p><div class="blog-meta"><span>Feb 20, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a0a2e,#0d1b2a)"><img src="assets/blog1.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div><div class="blog-body"><span class="blog-cat">Web Design</span><h3>Why Your Business Needs a Professional Website in 2026</h3><p>Still running your business off a WhatsApp link? Here's why a real website changes everything for your credibility and sales.</p><div class="blog-meta"><span>Jan 10, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#0a1a0d,#0d2a1a)"><img src="assets/blog2.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div><div class="blog-body"><span class="blog-cat">SEO</span><h3>5 SEO Mistakes Nigerian Businesses Keep Making</h3><p>From ignoring Google My Business to keyword stuffing — these errors are costing businesses thousands in lost traffic.</p><div class="blog-meta"><span>Jan 22, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#2d0a1e,#1a0038)"><img src="assets/blog3.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div><div class="blog-body"><span class="blog-cat">Design</span><h3>What Makes a Great Website Design? (2026 Edition)</h3><p>Speed, simplicity and mobile-first thinking. What separates a good site from a forgettable one.</p><div class="blog-meta"><span>Feb 3, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#1a1200,#2f2200)"><img src="assets/blog4.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div><div class="blog-body"><span class="blog-cat">Business</span><h3>How Much Does a Website Really Cost in Nigeria?</h3><p>A transparent breakdown of web development costs — what drives prices up and what's actually worth paying for.</p><div class="blog-meta"><span>Feb 10, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#001a2d,#002f47)"><img src="assets/blog5.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div><div class="blog-body"><span class="blog-cat">Development</span><h3>WordPress vs Custom Builds: Which is Right for You?</h3><p>Both have their place. How to decide which approach makes sense for your specific business and budget.</p><div class="blog-meta"><span>Feb 17, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
+        <div class="blog-card"><div class="blog-img" style="background:linear-gradient(135deg,#0d1a0d,#1a2f1a)"><img src="assets/blog6.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></div><div class="blog-body"><span class="blog-cat">Business</span><h3>How to Brief a Web Developer (And Get What You Want)</h3><p>The most common reason projects go wrong is a bad brief. Here's how to give your developer everything they need.</p><div class="blog-meta"><span>Feb 20, 2026</span><span class="blog-rm">Read More →</span></div></div></div>
       </div>
     </div>
   </section>
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></a><a class="f-social" href="https://wa.me/2348143329373"><img src="assets/icon-whatsapp-sm.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'"></a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
 </div>
 
 <!-- ══════════════════════════════════
@@ -1065,8 +1568,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
           <div class="perks">
             <div class="perk"><span class="perk-icon">🆓</span><div><div class="perk-title">Completely Free</div><div class="perk-desc">No cost, no strings attached.</div></div></div>
             <div class="perk"><span class="perk-icon">⏱️</span><div><div class="perk-title">20–60 Minutes</div><div class="perk-desc">Choose a duration that works for you.</div></div></div>
-            <div class="perk"><span class="perk-icon">💬</span><div><div class="perk-title">Video, Call or WhatsApp</div><div class="perk-desc">Whatever you're most comfortable with.</div></div></div>
-            <div class="perk"><span class="perk-icon">📋</span><div><div class="perk-title">Clear Next Steps</div><div class="perk-desc">You'll leave knowing exactly what to do.</div></div></div>
+            <div class="perk"><span class="perk-icon"><img src="assets/icon-chat.png" style="width:22px;height:22px;object-fit:contain" onerror="this.style.display='none'"></span><div><div class="perk-title">Video, Call or WhatsApp</div><div class="perk-desc">Whatever you're most comfortable with.</div></div></div>
+            <div class="perk"><span class="perk-icon"><img src="assets/icon-checklist.png" style="width:22px;height:22px;object-fit:contain" onerror="this.style.display='none'"></span><div><div class="perk-title">Clear Next Steps</div><div class="perk-desc">You'll leave knowing exactly what to do.</div></div></div>
           </div>
         </div>
         <div>
@@ -1088,7 +1591,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       </div>
     </div>
   </section>
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></a><a class="f-social" href="https://wa.me/2348143329373"><img src="assets/icon-whatsapp-sm.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'"></a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
 </div>
 
 <!-- ══════════════════════════════════
@@ -1119,8 +1622,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       </div>
 
       <div class="vals-grid">
-        <div class="val-card"><div class="val-icon">🎯</div><h3>Purpose-Driven Design</h3><p>Every decision has a reason — conversion, clarity, or delight. Nothing is decorative without a function.</p></div>
-        <div class="val-card"><div class="val-icon">⚡</div><h3>Performance Obsessed</h3><p>Slow websites lose business. We build for speed first, so your visitors never have to wait.</p></div>
+        <div class="val-card"><div class="val-icon"><img src="assets/icon-vision.png" style="width:32px;height:32px;object-fit:contain" onerror="this.style.display='none'"></div><h3>Purpose-Driven Design</h3><p>Every decision has a reason — conversion, clarity, or delight. Nothing is decorative without a function.</p></div>
+        <div class="val-card"><div class="val-icon"><img src="assets/icon-mission.png" style="width:32px;height:32px;object-fit:contain" onerror="this.style.display='none'"></div><h3>Performance Obsessed</h3><p>Slow websites lose business. We build for speed first, so your visitors never have to wait.</p></div>
         <div class="val-card"><div class="val-icon">🤝</div><h3>Client Partnership</h3><p>We don't disappear after delivery. We're invested in your long-term success, not just the launch.</p></div>
       </div>
     </div>
@@ -1132,18 +1635,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       <p class="section-label" style="text-align:center">Our Tech Stack</p>
       <h2 class="section-title" style="text-align:center">Technologies We Work With</h2>
       <div class="stack-grid">
-        <div class="stack-card"><div class="s-icon">⚛️</div><div class="s-name">React</div></div>
-        <div class="stack-card"><div class="s-icon">🌐</div><div class="s-name">HTML5</div></div>
-        <div class="stack-card"><div class="s-icon">🎨</div><div class="s-name">CSS3</div></div>
-        <div class="stack-card"><div class="s-icon">☕</div><div class="s-name">JavaScript</div></div>
-        <div class="stack-card"><div class="s-icon">🟦</div><div class="s-name">WordPress</div></div>
-        <div class="stack-card"><div class="s-icon">🖌️</div><div class="s-name">Figma</div></div>
-        <div class="stack-card"><div class="s-icon">🐍</div><div class="s-name">Node.js</div></div>
-        <div class="stack-card"><div class="s-icon">🗄️</div><div class="s-name">MySQL</div></div>
-        <div class="stack-card"><div class="s-icon">🌊</div><div class="s-name">Tailwind</div></div>
-        <div class="stack-card"><div class="s-icon">☁️</div><div class="s-name">Vercel</div></div>
-        <div class="stack-card"><div class="s-icon">🛠️</div><div class="s-name">Git</div></div>
-        <div class="stack-card"><div class="s-icon">🔷</div><div class="s-name">TypeScript</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-react.png" alt="react" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">⚛️</span></div><div class="s-name">React</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-html5.png" alt="html5" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🌐</span></div><div class="s-name">HTML5</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-css3.png" alt="css3" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none"><img src="assets/blog3.jpg" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'"></span></div><div class="s-name">CSS3</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-javascript.png" alt="javascript" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">☕</span></div><div class="s-name">JavaScript</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-wordpress.png" alt="wordpress" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🟦</span></div><div class="s-name">WordPress</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-figma.png" alt="figma" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🖌️</span></div><div class="s-name">Figma</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-nodejs.png" alt="nodejs" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🐍</span></div><div class="s-name">Node.js</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-mysql.png" alt="mysql" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🗄️</span></div><div class="s-name">MySQL</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-tailwind.png" alt="tailwind" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🌊</span></div><div class="s-name">Tailwind</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-vercel.png" alt="vercel" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">☁️</span></div><div class="s-name">Vercel</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-git.png" alt="git" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🛠️</span></div><div class="s-name">Git</div></div>
+        <div class="stack-card"><div class="s-icon"><img src="assets/tech-typescript.png" alt="typescript" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="s-icon-fb" style="display:none">🔷</span></div><div class="s-name">TypeScript</div></div>
       </div>
     </div>
   </section>
@@ -1157,7 +1660,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
   </div>
 
 
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency creating websites that work as good as they look.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li><li><a onclick="go('portfolio')">Portfolio</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li><li><a href="mailto:hello@lumiewebstudio.com">hello@lumiewebstudio.com</a></li><li><a href="https://wa.me/2348143329373">WhatsApp</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency creating websites that work as good as they look.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></a><a class="f-social" href="https://wa.me/2348143329373"><img src="assets/icon-whatsapp-sm.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'"></a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li><li><a onclick="go('portfolio')">Portfolio</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li><li><a href="/cdn-cgi/l/email-protection#8fe7eae3e3e0cfe3fae2e6eaf8eaedfcfbfaebe6e0a1ece0e2"><span class="__cf_email__" data-cfemail="0169646d6d6e416d746c686476646372757465686e2f626e6c">[email&#160;protected]</span></a></li><li><a href="https://wa.me/2348143329373">WhatsApp</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
 </div>
 
 <!-- ══════════════════════════════════
@@ -1173,9 +1676,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
           <p style="color:var(--muted);line-height:1.75;font-size:.9rem;margin-bottom:.3rem">Have a project in mind? Reach out and we'll get back to you within 24 hours — usually much faster.</p>
           <div class="contact-methods">
             <!-- Replace with your actual email and links -->
-            <a class="cm" href="mailto:hello@lumiewebstudio.com"><span class="cm-icon">📧</span><div><div class="cm-label">Email</div><div class="cm-val">hello@lumiewebstudio.com</div></div></a>
-            <a class="cm" href="https://wa.me/2348143329373" target="_blank"><span class="cm-icon">💬</span><div><div class="cm-label">WhatsApp</div><div class="cm-val">+234 XXX XXX XXXX</div></div></a>
-            <a class="cm" href="#" target="_blank"><span class="cm-icon">📸</span><div><div class="cm-label">Instagram</div><div class="cm-val">@yourhandle</div></div></a>
+            <a class="cm" href="/cdn-cgi/l/email-protection#4b232e2727240b273e26222e3c2e29383f3e2f222465282426"><span class="cm-icon">📧</span><div><div class="cm-label">Email</div><div class="cm-val"><span class="__cf_email__" data-cfemail="660e030a0a09260a130b0f03110304151213020f094805090b">[email&#160;protected]</span></div></div></a>
+            <a class="cm" href="https://wa.me/2348143329373" target="_blank"><span class="cm-icon"><img src="assets/whatsapp.png" style="width:22px;height:22px;object-fit:contain" onerror="this.style.display='none'"></span><div><div class="cm-label">WhatsApp</div><div class="cm-val">+234 XXX XXX XXXX</div></div></a>
+            <a class="cm" href="#" target="_blank"><span class="cm-icon"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></span><div><div class="cm-label">Instagram</div><div class="cm-val">@yourhandle</div></div></a>
             <a class="cm" href="#" target="_blank"><span class="cm-icon">💼</span><div><div class="cm-label">LinkedIn</div><div class="cm-val">Lumiee Web Studio</div></div></a>
           </div>
         </div>
@@ -1195,7 +1698,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
       </div>
     </div>
   </section>
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency creating websites that work as good as they look.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#">📸</a><a class="f-social" href="https://wa.me/2348143329373">💬</a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><div class="footer-logo-wrap" onclick="go('home')"><img src="assets/logo.png" alt="" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span class="footer-logo-text" style="display:block">Lumiee Web Studio</span></div><p>A web development & product design agency creating websites that work as good as they look.</p><div class="footer-socials"><a class="f-social" href="#">𝕏</a><a class="f-social" href="#">in</a><a class="f-social" href="#"><img src="assets/icon-instagram.png" style="width:16px;height:16px;object-fit:contain" onerror="this.replaceWith('📸')"></a><a class="f-social" href="https://wa.me/2348143329373"><img src="assets/icon-whatsapp-sm.png" style="width:16px;height:16px;object-fit:contain" onerror="this.style.display='none'"></a></div></div><div class="footer-col"><h4>Services</h4><ul><li><a onclick="go('web-dev')">Web Development</a></li><li><a onclick="go('product-design')">Product Design</a></li><li><a onclick="go('seo')">SEO</a></li></ul></div><div class="footer-col"><h4>Resources</h4><ul><li><a onclick="go('blog')">Blog</a></li><li><a onclick="go('consultation')">Consultation</a></li></ul></div><div class="footer-col"><h4>Company</h4><ul><li><a onclick="go('about')">About Us</a></li><li><a onclick="go('contact')">Contact</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 Lumiee Web Studio — All rights reserved.</p><p style="font-size:.74rem;color:var(--muted)">Built with 🖤 in Nigeria</p></div></div></footer>
 </div>
 
 <!-- Portfolio Modal -->
@@ -1213,7 +1716,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(5,5,7,.95);
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── PORTFOLIO DATA ──
 const pdata={
   p1:{tag:'Corporate · WordPress',title:'Apex Law Partners',emoji:'⚖️',meta:[{l:'Client',v:'Apex Law Partners'},{l:'Type',v:'Corporate'},{l:'Pages',v:'5'},{l:'Duration',v:'2 Weeks'}],desc:'A professional 5-page WordPress website for a Lagos-based law firm. Clean, authoritative design with a case-results section and direct inquiry form. Result: 40% increase in online client inquiries within the first month of launch.'},
@@ -1223,6 +1726,16 @@ const pdata={
   p5:{tag:'Corporate · WordPress',title:'Stellar Logistics',emoji:'🚛',meta:[{l:'Client',v:'Stellar Logistics'},{l:'Type',v:'Corporate'},{l:'Pages',v:'5'},{l:'Duration',v:'2 Weeks'}],desc:'Corporate website for a supply chain company operating across West Africa. Features a fleet status section, route coverage map and RFQ form integrated with their CRM.'},
   p6:{tag:'Custom · WooCommerce',title:'Thrift & Thread',emoji:'👗',meta:[{l:'Client',v:'Thrift & Thread'},{l:'Type',v:'E-Commerce'},{l:'Stack',v:'WooCommerce'},{l:'Duration',v:'5 Weeks'}],desc:'A fully custom e-commerce store for a fashion brand specialising in curated vintage pieces. Bespoke product catalogue, style quiz, Instagram integration and custom checkout. Sales increased 3x vs their previous setup.'}
 };
+
+// ── THEME TOGGLE ──
+function toggleTheme(){
+  document.body.classList.toggle('light-mode');
+  localStorage.setItem('theme', document.body.classList.contains('light-mode') ? 'light' : 'dark');
+}
+// Restore saved theme on load
+(function(){
+  if(localStorage.getItem('theme') === 'light') document.body.classList.add('light-mode');
+})();
 
 // ── NAVIGATION ──
 function go(id){
@@ -1285,6 +1798,11 @@ function faq(el){
   const item=el.parentElement,open=item.classList.contains('open');
   document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
   if(!open)item.classList.add('open');
+}
+
+// ── PORTFOLIO SCROLL PREVIEW ──
+function scrollPortPreview(card){
+  card.classList.toggle('scrolling');
 }
 
 // ── PORTFOLIO FILTER ──
